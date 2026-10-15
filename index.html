@@ -3,170 +3,219 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>原民會獎助學金 LLM Wiki｜政大</title>
+<title>原民會大專獎助學金 LLM Wiki｜政大</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;900&display=swap" rel="stylesheet">
+<script>
+  // 先套用使用者在「外觀」選過的設定，避免載入時閃一下
+  try {
+    const a = JSON.parse(localStorage.getItem("appearance") || "{}"), r = document.documentElement;
+    if (a.font && a.font !== "standard") r.dataset.font = a.font;
+    if (a.width && a.width !== "standard") r.dataset.width = a.width;
+    if (a.theme && a.theme !== "auto") r.dataset.theme = a.theme;
+  } catch (e) {}
+</script>
 <style>
 :root{
-  --paper:#F5F7F3; --panel:#E9EEE7; --ink:#20302B; --muted:#5A6A64; --line:#CCD6CE;
-  --sage:#4E7560; --sage-soft:#DCE7DE; --mark:#F6E66A; --mark-ink:#20302B; --warn:#9B3B26; --warn-soft:#F7E3DC;
+  --bg:#ffffff; --ink:#000000; --muted:#555555; --line:#d4d4d4; --soft:#f3f3f3;
   --sans:"Noto Sans TC","PingFang TC","Microsoft JhengHei","Heiti TC",system-ui,sans-serif;
   --serif:"Noto Serif TC","Songti TC","PMingLiU",serif;
+  --col:720px; --wide:1120px; --scale:1;
   color-scheme:light;
-  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  box-sizing:border-box;
+  padding-bottom:env(safe-area-inset-bottom,0px);
 }
 @media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --paper:#151B19; --panel:#1C2421; --ink:#E4EAE5; --muted:#9AA8A1; --line:#2F3B37;
-    --sage:#8DB79C; --sage-soft:#22332B; --mark:rgba(240,220,90,.32); --mark-ink:#F4F1D0; --warn:#E89A84; --warn-soft:#3A2420;
-    color-scheme:dark;
-  }
+  :root:not([data-theme="light"]){ --bg:#000000; --ink:#ffffff; --muted:#a8a8a8; --line:#3a3a3a; --soft:#141414; color-scheme:dark; }
 }
-:root[data-theme="dark"]{
-  --paper:#151B19; --panel:#1C2421; --ink:#E4EAE5; --muted:#9AA8A1; --line:#2F3B37;
-  --sage:#8DB79C; --sage-soft:#22332B; --mark:rgba(240,220,90,.32); --mark-ink:#F4F1D0; --warn:#E89A84; --warn-soft:#3A2420;
-  color-scheme:dark;
-}
+:root[data-font="small"]{--scale:.9}
+:root[data-font="large"]{--scale:1.15}
+:root[data-width="wide"]{--col:960px;--wide:1400px}
+:root[data-theme="dark"]{ --bg:#000000; --ink:#ffffff; --muted:#a8a8a8; --line:#3a3a3a; --soft:#141414; color-scheme:dark; }
 *,*::before,*::after{box-sizing:inherit}
-html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px)}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.85}
-a{color:var(--sage)}
-:focus-visible{outline:3px solid var(--sage);outline-offset:2px;border-radius:3px}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 72px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:calc(17px * var(--scale));line-height:1.85}
+a{color:var(--ink);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:2px}
+button,input{font:inherit;color:inherit}
 
-.shell{display:grid;grid-template-columns:272px minmax(0,1fr);min-height:100vh}
-aside.nav{background:var(--panel);border-right:1px solid var(--line);padding:28px 20px 40px;position:sticky;top:0;height:100vh;overflow-y:auto}
-.brand{font-family:var(--serif);font-weight:900;font-size:21px;line-height:1.35;margin:0 0 4px;color:var(--ink);text-decoration:none;display:block}
-.brand-sub{font-size:13px;color:var(--muted);margin:0 0 20px}
-.search{width:100%;font:inherit;font-size:15px;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink)}
-.navgroup{margin-top:22px}
-.navgroup h2{font-size:13px;font-weight:500;color:var(--muted);margin:0 0 6px;letter-spacing:.05em}
-.navgroup ul{list-style:none;margin:0;padding:0}
-.navgroup a{display:block;padding:5px 10px;margin:0 -10px;border-radius:6px;color:var(--ink);text-decoration:none;font-size:15px;line-height:1.5}
-.navgroup a:hover{background:var(--sage-soft)}
-.navgroup a[aria-current="page"]{background:var(--sage);color:var(--paper);font-weight:500}
-.results li a small{display:block;color:var(--muted);font-size:12.5px;margin-top:2px}
-[aria-current="page"] small{color:inherit!important;opacity:.85}
+/* 頂部橫條 */
+header.top{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.top-inner{max-width:var(--wide);margin:0 auto;padding:10px 24px;display:flex;align-items:center;gap:20px}
+.brand{font-family:var(--serif);font-weight:900;font-size:calc(17px * var(--scale));text-decoration:none;white-space:nowrap}
+.top-search{flex:1;display:flex;justify-content:center}
+.top-search form{width:100%;max-width:420px;display:flex}
+.top-search input{width:100%;padding:6px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);font-size:calc(15px * var(--scale))}
+.top-search input:focus{border-color:var(--ink);outline:none}
+.appear{position:relative;margin-left:auto}
+.appear-btn{background:none;border:1px solid var(--line);border-radius:8px;padding:4px 12px;font-size:calc(14px * var(--scale));cursor:pointer;white-space:nowrap}
+.appear-btn:hover,.appear-btn[aria-expanded="true"]{border-color:var(--ink)}
+.appear-panel{position:absolute;right:0;top:calc(100% + 8px);width:230px;background:var(--bg);border:1px solid var(--ink);border-radius:10px;padding:6px 18px 12px;z-index:40;line-height:1.5}
+.appear-panel[hidden]{display:none}
+.appear-panel fieldset{border:0;margin:0;padding:10px 0;border-bottom:1px solid var(--line)}
+.appear-panel fieldset:last-child{border-bottom:0}
+.appear-panel legend{font-weight:700;font-size:calc(14px * var(--scale));padding:0;margin-bottom:4px;float:left;width:100%}
+.appear-panel label{display:flex;align-items:center;gap:8px;padding:3px 0;font-size:calc(15px * var(--scale));cursor:pointer;clear:both}
+.appear-panel input{accent-color:var(--ink);width:16px;height:16px;margin:0}
+body.home .top-search{visibility:hidden}
 
-.topbar{display:none}
-main{padding:48px 56px 80px;max-width:1180px}
-.cols{display:grid;grid-template-columns:minmax(0,72ch) 220px;gap:56px;align-items:start}
-.crumb{font-size:13px;color:var(--muted);margin-bottom:6px}
-article h1{font-family:var(--serif);font-weight:900;font-size:clamp(28px,4vw,40px);line-height:1.3;margin:0 0 24px;letter-spacing:.01em}
-article h2{font-family:var(--serif);font-weight:600;font-size:23px;line-height:1.4;margin:40px 0 12px;padding-top:4px;border-top:1px solid var(--line)}
-article h2:first-of-type{border-top:0}
-article p,article li{max-width:72ch}
+main{max-width:var(--col);margin:0 auto;padding:40px 24px 80px}
+
+/* 首頁 */
+body.home main{max-width:var(--wide)}
+.portal{border:1px solid var(--ink);border-radius:12px;padding:32px 36px 28px;margin:0 0 28px}
+.portal-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin:0 0 24px}
+.portal h1{font-family:var(--serif);font-weight:900;font-size:calc(clamp(30px,5vw,44px) * var(--scale));line-height:1.2;margin:0 0 6px;letter-spacing:.02em}
+.portal .sub{color:var(--muted);margin:0;font-size:calc(16px * var(--scale))}
+.stats{text-align:right;font-size:calc(15px * var(--scale));line-height:1.9}
+.stats b{font-size:calc(22px * var(--scale));font-weight:700}
+.stats nav a{margin-left:14px}
+.ask{display:flex;gap:10px}
+.ask input{flex:1;min-width:0;height:64px;padding:0 20px;border:2px solid var(--ink);border-radius:12px;background:var(--bg);font-size:calc(20px * var(--scale))}
+.ask input:focus{outline:none;box-shadow:0 0 0 4px var(--line)}
+.ask button{padding:0 30px;border:0;border-radius:12px;background:var(--ink);color:var(--bg);font-weight:700;font-size:calc(18px * var(--scale));cursor:pointer}
+.examples{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0}
+.examples span{font-size:calc(14px * var(--scale));color:var(--muted);align-self:center;margin-right:2px}
+.examples button{background:none;border:1px solid var(--line);border-radius:999px;padding:4px 14px;font-size:calc(14px * var(--scale));color:var(--muted);cursor:pointer}
+.examples button:hover{border-color:var(--ink);color:var(--ink)}
+.home-grid{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:24px;align-items:start}
+.home-grid .col{display:grid;gap:24px}
+.box{border:1px solid var(--line);border-radius:12px;padding:22px 24px}
+.box h2{font-family:var(--serif);font-weight:900;font-size:calc(21px * var(--scale));margin:0 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.box p:first-of-type{margin-top:0}
+.box ul{padding-left:1.2em;margin:0}
+.box li{margin:6px 0}
+.box .tablewrap{margin:12px 0 0}
+.box strong{font-weight:700}
+.status b{display:block;font-size:calc(18px * var(--scale));margin-bottom:2px}
+.status span{color:var(--muted);font-size:calc(15px * var(--scale));line-height:1.7}
+.updates{list-style:none;padding:0!important}
+.updates li{display:flex;gap:12px;font-size:calc(15px * var(--scale));line-height:1.6;padding:6px 0;border-bottom:1px solid var(--line);margin:0!important}
+.updates li:last-child{border-bottom:0}
+.updates .k{flex:none;font-weight:700;min-width:4.5em}
+.box .more{margin:10px 0 0;font-size:calc(14px * var(--scale))}
+
+/* 條目內文 */
+.crumb{font-size:calc(14px * var(--scale));color:var(--muted);margin:0 0 4px}
+article h1{font-family:var(--serif);font-weight:900;font-size:calc(clamp(28px,5vw,38px) * var(--scale));line-height:1.3;margin:0 0 24px}
+article h2{font-family:var(--serif);font-weight:600;font-size:calc(23px * var(--scale));line-height:1.4;margin:40px 0 12px}
 article ul,article ol{padding-left:1.4em}
 article li{margin:4px 0}
-article strong{font-weight:700;color:var(--mark-ink);background:linear-gradient(transparent 38%,var(--mark) 38%,var(--mark) 92%,transparent 92%);padding:0 .12em}
-article code{font-size:.88em;background:var(--sage-soft);padding:1px 6px;border-radius:4px;word-break:break-all}
-article pre{background:var(--panel);padding:14px;border-radius:8px;overflow-x:auto;font-size:14px;line-height:1.6}
+article strong{font-weight:700}
+article code{font-size:.88em;background:var(--soft);padding:1px 6px;border-radius:4px;word-break:break-all}
+article pre{background:var(--soft);padding:14px;border-radius:8px;overflow-x:auto;font-size:calc(14px * var(--scale));line-height:1.6}
 article pre code{background:none;padding:0}
-a.wl{color:var(--sage);text-decoration:none;border-bottom:1.5px solid color-mix(in srgb,var(--sage) 45%,transparent);font-weight:500}
-a.wl:hover{border-bottom-color:var(--sage)}
+article img{max-width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:6px;margin:16px 0}
 .tablewrap{overflow-x:auto;margin:16px 0}
-table{border-collapse:collapse;width:100%;font-size:15.5px;line-height:1.6}
+table{border-collapse:collapse;width:100%;font-size:calc(15.5px * var(--scale));line-height:1.6}
 th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
-th{font-weight:700;background:var(--panel)}
-article img,img.src{max-width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:6px;margin:12px 0 4px}
-figure{margin:24px 0}
-figcaption{font-size:13.5px;color:var(--muted)}
+th{font-weight:700;border-bottom:2px solid var(--ink)}
+.meta{margin-top:56px;padding-top:16px;border-top:1px solid var(--line);font-size:calc(15px * var(--scale));color:var(--muted);line-height:1.8}
+.meta p{margin:0 0 6px}
+.meta a{color:var(--ink)}
 
-.status{border-left:4px solid var(--sage);background:var(--sage-soft);padding:14px 18px;border-radius:0 8px 8px 0;margin:0 0 28px;line-height:1.6}
-.status.closed{border-left-color:var(--warn);background:var(--warn-soft)}
-.status b{display:block;font-size:17px;margin-bottom:2px}
-.status span{font-size:14.5px;color:var(--muted)}
+/* 提問結果 */
+.q-title{font-family:var(--serif);font-weight:900;font-size:calc(clamp(24px,4.5vw,32px) * var(--scale));line-height:1.35;margin:0 0 24px}
+.answer{border:2px solid var(--ink);border-radius:10px;padding:18px 20px;margin:0 0 32px}
+.answer.nodata{border-style:dashed}
+.answer.offtopic{border:1px solid var(--line)}
+.answer .label{font-size:calc(14px * var(--scale));font-weight:700;margin:0 0 6px}
+.answer .text{margin:0;font-size:calc(17.5px * var(--scale))}
+.answer.offtopic .text{color:var(--muted)}
+.answer .src{margin:12px 0 0;font-size:calc(15px * var(--scale))}
+.answer .note{margin:10px 0 0;font-size:calc(13px * var(--scale));color:var(--muted)}
+.answer .wait{margin:0;color:var(--muted)}
+.related h2{font-size:calc(15px * var(--scale));font-weight:700;margin:0 0 8px;font-family:var(--sans)}
+.related ul{list-style:none;padding:0;margin:0}
+.related li{padding:8px 0;border-bottom:1px solid var(--line)}
+.related li p{margin:2px 0 0;font-size:calc(15px * var(--scale));color:var(--muted);line-height:1.7}
+.related mark{background:none;color:var(--ink);font-weight:700}
 
-.side{position:sticky;top:48px;font-size:14px;line-height:1.6}
-.side h3{font-size:13px;font-weight:500;color:var(--muted);margin:0 0 8px;letter-spacing:.05em}
-.side ul{list-style:none;margin:0 0 28px;padding:0}
-.side li{margin:0 0 6px}
-.side .meta{color:var(--muted)}
-footer{margin-top:64px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);max-width:72ch}
-.themebtn{margin-top:28px;font:inherit;font-size:13px;background:none;border:1px solid var(--line);color:var(--muted);border-radius:6px;padding:5px 10px;cursor:pointer}
+footer{max-width:var(--col);margin:0 auto;padding:0 24px 48px;font-size:calc(13.5px * var(--scale));color:var(--muted);line-height:1.8}
+footer .in{border-top:1px solid var(--line);padding-top:20px}
+footer nav{margin-bottom:6px}
+footer a{color:var(--muted)}
 
-.askbox{display:flex;gap:8px;margin:0 0 28px}
-.askbox input{flex:1;min-width:0;font:inherit;font-size:17px;padding:12px 14px;border:1.5px solid var(--sage);border-radius:10px;background:var(--paper);color:var(--ink)}
-.askbox button{font:inherit;font-size:16px;font-weight:500;padding:0 18px;border:0;border-radius:10px;background:var(--sage);color:var(--paper);cursor:pointer}
-.hits{list-style:none;padding:0;margin:0}
-.hits li{padding:16px 0;border-bottom:1px solid var(--line)}
-.hits a.t{font-family:var(--serif);font-weight:600;font-size:19px;color:var(--sage);text-decoration:none}
-.hits a.t:hover{text-decoration:underline}
-.hits p{margin:4px 0 0;color:var(--muted);font-size:15.5px;line-height:1.7}
-mark{background:var(--mark);color:var(--mark-ink);padding:0 .1em;border-radius:2px}
-.nodata{border-left:4px solid var(--warn);background:var(--warn-soft);padding:16px 20px;border-radius:0 8px 8px 0;line-height:1.75}
-.nodata b{display:block;font-size:18px;margin-bottom:4px}
-.ai{border:1.5px solid var(--sage);border-radius:10px;padding:18px 20px;margin:0 0 32px;background:var(--panel)}
-.ai h2{font-family:var(--sans);font-size:14px;font-weight:500;color:var(--muted);margin:0 0 8px;border:0;padding:0;letter-spacing:.05em}
-.ai .ans{font-size:17.5px;line-height:1.85;margin:0}
-.ai .src{margin:12px 0 0;font-size:14.5px;color:var(--muted)}
-.ai .note{margin:10px 0 0;font-size:13px;color:var(--muted)}
-.ai.nodata-ai{border-color:var(--warn);background:var(--warn-soft)}
-.ai.offtopic{border-color:var(--line);background:var(--panel)}
-.ai .wait{color:var(--muted);margin:0}
-.subhead{font-family:var(--serif);font-weight:600;font-size:20px;margin:8px 0 4px}
-@media (max-width:980px){ .cols{grid-template-columns:minmax(0,1fr)} .side{position:static;border-top:1px solid var(--line);padding-top:20px;margin-top:8px} }
-@media (max-width:760px){
-  .shell{grid-template-columns:1fr}
-  .topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--panel);border-bottom:1px solid var(--line);padding:10px 16px}
-  body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--panel)}
-  .topbar .brand{font-size:17px;margin:0}
-  .menubtn{font:inherit;font-size:15px;background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:6px 12px}
-  aside.nav{display:none;position:static;height:auto;border-right:0;border-bottom:1px solid var(--line)}
-  aside.nav.open{display:block}
-  aside.nav > .brand,aside.nav > .brand-sub{display:none}
-  main{padding:28px 18px 64px}
-  body{font-size:16.5px}
+@media (max-width:860px){ .home-grid{grid-template-columns:minmax(0,1fr)} }
+@media (max-width:640px){
+  .top-inner{flex-wrap:wrap;gap:8px 12px;padding:10px 16px}
+  .top-search{order:3;flex-basis:100%}
+  .top-search form{max-width:none}
+  body.home .top-search{display:none}
+  main{padding:20px 14px 64px}
+  footer{padding:0 14px 40px}
+  .portal{padding:22px 18px 20px}
+  .portal-head{margin-bottom:18px}
+  .stats{text-align:left}
+  .stats nav a{margin:0 14px 0 0}
+  .ask input{height:56px;font-size:calc(17px * var(--scale));padding:0 14px}
+  .ask button{padding:0 18px;font-size:calc(16px * var(--scale))}
+  .box{padding:18px}
+  body{font-size:calc(16.5px * var(--scale))}
 }
-@media (prefers-reduced-motion:no-preference){ .navgroup a{transition:background .12s} }
 </style>
 </head>
 <body>
-<div class="topbar"><a class="brand" href="#/總覽">原民會獎助學金 Wiki</a><button class="menubtn" id="menubtn" aria-expanded="false" aria-controls="nav">目錄</button></div>
-<div class="shell">
-  <aside class="nav" id="nav">
-    <a class="brand" href="#/總覽">原民會大專獎助學金<br>政大 LLM Wiki</a>
-    <p class="brand-sub">115 學年度第 1 學期</p>
-    <form id="qform" role="search"><input class="search" id="q" type="search" placeholder="搜尋，例如：成績單要正本嗎" aria-label="搜尋 wiki"></form>
-    <div id="navlist"></div>
-    <button class="themebtn" id="themebtn" type="button">切換深淺色</button>
-  </aside>
-  <main>
-    <div class="cols">
-      <article id="art"></article>
-      <div class="side" id="side"></div>
+<header class="top">
+  <div class="top-inner">
+    <a class="brand" href="#/">原民會獎助學金 Wiki</a>
+    <div class="top-search"><form id="topform" role="search" autocomplete="off"><input id="topq" type="search" placeholder="問獎助學金或校園生活的問題" aria-label="提問" autocomplete="off" spellcheck="false"></form></div>
+    <div class="appear">
+      <button class="appear-btn" id="appearBtn" type="button" aria-expanded="false" aria-controls="appearPanel">外觀</button>
+      <form class="appear-panel" id="appearPanel" hidden>
+        <fieldset><legend>文字</legend>
+          <label><input type="radio" name="font" value="small">小</label>
+          <label><input type="radio" name="font" value="standard">標準</label>
+          <label><input type="radio" name="font" value="large">大</label>
+        </fieldset>
+        <fieldset><legend>寬度</legend>
+          <label><input type="radio" name="width" value="standard">標準</label>
+          <label><input type="radio" name="width" value="wide">寬</label>
+        </fieldset>
+        <fieldset><legend>顏色</legend>
+          <label><input type="radio" name="theme" value="auto">自動（跟著系統）</label>
+          <label><input type="radio" name="theme" value="light">淺色</label>
+          <label><input type="radio" name="theme" value="dark">深色</label>
+        </fieldset>
+      </form>
     </div>
-    <footer>本站依 Karpathy 的 LLM Wiki 模式整理：原始資料保存在 raw/，條目由 LLM 依 AGENTS.md 規則撰寫與交叉連結。最後更新 2026-10-15。內容僅供參考，請以原資中心與原民會正式公告為準。</footer>
-  </main>
-</div>
+  </div>
+</header>
+<main><article id="art"></article></main>
+<footer><div class="in">
+  <nav><a href="#/index">全部條目</a>　<a href="#/log">操作紀錄</a></nav>
+  本站依 Karpathy 的 LLM Wiki 模式整理：原始資料保存在 raw/，條目由 LLM 依 AGENTS.md 規則撰寫與交叉連結。內容僅供參考，請以原資中心與原民會正式公告為準。
+</div></footer>
 <script src="assets/marked.min.js"></script>
 <script>
 // ===== 設定 =====
-// AI 問答的網址。部署在 Vercel 時維持 "/api/ask" 即可。
-// 改成 "" = 關閉 AI，只用關鍵字搜尋
+// AI 問答的網址。部署在 Vercel 時維持 "/api/ask" 即可。改成 "" = 關閉 AI，只用關鍵字搜尋
 const ASK_API = "/api/ask";
-// ================
-const PAGES = {};
+// 首頁的範例問題
+const EXAMPLES = ["成績 65 分可以申請嗎", "要交哪些文件", "什麼時候截止"];
+// 首頁的截止提醒
 const DEADLINES = {online:new Date("2026-10-14T23:59:00+08:00"), paper:new Date("2026-10-15T17:00:00+08:00")};
+// ================
 
-const GROUPS = [["concept","主題"],["entity","單位"],["query","問答與檢查"],["source","來源"],["meta","紀錄"]];
-const LABEL = {index:"目錄", log:"操作紀錄"};
+const PAGES = {};
 let order = [];
+const backlinks = {};
+const HOME = "總覽";
+const TYPES = {concept:"主題", entity:"單位", query:"問答與檢查", source:"來源", meta:"紀錄"};
+const LABEL = {index:"全部條目", log:"操作紀錄"};
 const label = t => LABEL[t] || t;
 
-function esc(s){return s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
-function wikify(md){
-  return md.replace(/\[\[(.+?)\]\]/g,(m,t)=> PAGES[t]
-    ? `<a class="wl" href="#/${encodeURIComponent(t)}">${esc(label(t))}</a>` : esc(t));
-}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+const link = t => `<a href="#/${encodeURIComponent(t)}">${esc(label(t).replace(/^來源-/,"來源："))}</a>`;
+function wikify(md){ return md.replace(/\[\[(.+?)\]\]/g,(m,t)=> PAGES[t] ? link(t) : esc(t)); }
 function render(md){
   const src = wikify(md);
-  let html;
-  if (window.marked){ html = marked.parse(src,{gfm:true,breaks:false,mangle:false,headerIds:false}); }
-  else { html = "<pre>"+src+"</pre>"; }
+  const html = window.marked ? marked.parse(src,{gfm:true,breaks:false,mangle:false,headerIds:false}) : "<pre>"+src+"</pre>";
   return html.replace(/<table>/g,'<div class="tablewrap"><table>').replace(/<\/table>/g,'</table></div>');
 }
-const backlinks = {};
+
 function parsePage(txt){
   const m = txt.replace(/\r\n/g,"\n").match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
   if (!m) return null;
@@ -184,26 +233,6 @@ async function load(){
   texts.forEach(txt => { const p = parsePage(txt); if (p && p.title){ PAGES[p.title] = p; order.push(p.title); } });
   for (const t of order){ for (const m of PAGES[t].body.matchAll(/\[\[(.+?)\]\]/g)){ (backlinks[m[1]] ||= new Set()).add(t); } }
 }
-
-function statusBlock(){
-  const now = new Date(), fmt = d => d.toLocaleString("zh-TW",{timeZone:"Asia/Taipei",month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit",hour12:false});
-  const left = d => { const ms=d-now, h=Math.floor(ms/3600000), m=Math.floor(ms%3600000/60000); return h>=24?`還有 ${Math.floor(h/24)} 天 ${h%24} 小時`:`還有 ${h} 小時 ${m} 分`; };
-  if (now < DEADLINES.online) return `<div class="status"><b>開放申請中</b><span>線上申請截止 ${fmt(DEADLINES.online)}（${left(DEADLINES.online)}）；紙本收件截止 ${fmt(DEADLINES.paper)}。</span></div>`;
-  if (now < DEADLINES.paper) return `<div class="status"><b>線上申請已截止，紙本今天 17:00 前要交</b><span>紙本收件截止 ${fmt(DEADLINES.paper)}（${left(DEADLINES.paper)}），交到行政大樓三樓原資中心。</span></div>`;
-  return `<div class="status closed"><b>本學期申請已截止</b><span>紙本收件已於 ${fmt(DEADLINES.paper)} 截止。下學期期程請留意原資中心公告。</span></div>`;
-}
-
-function buildNav(current){
-  const box = document.getElementById("navlist"); let h = "";
-  h += `<div class="navgroup"><ul><li><a href="#/總覽" ${current==="總覽"?'aria-current="page"':''}>總覽</a></li><li><a href="#/index" ${current==="index"?'aria-current="page"':''}>全部條目</a></li></ul></div>`;
-  for (const [type,name] of GROUPS){
-    const items = order.filter(t => PAGES[t].type===type && t!=="總覽" && t!=="index");
-    if (!items.length) continue;
-    h += `<div class="navgroup"><h2>${name}</h2><ul>` + items.map(t=>`<li><a href="#/${encodeURIComponent(t)}" ${t===current?'aria-current="page"':''}>${esc(label(t).replace(/^來源-/,""))}</a></li>`).join("") + "</ul></div>";
-  }
-  box.innerHTML = h;
-}
-
 
 // ---------- 搜尋 ----------
 const STOPCH = new Set([..."嗎呢吧啊的了是我你妳他她要有在能會可以和與及或問什麼怎如何哪裡多少還都也就嗎那這個些想該"]);
@@ -257,104 +286,178 @@ function snippet(h){
   const re = new RegExp(h.found.slice().sort((a,b)=>b.length-a.length).map(k => k.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")).join("|"), "gi");
   return esc(best).replace(re, m => `<mark>${m}</mark>`);
 }
-function askBox(v){ return `<form class="askbox" role="search" data-ask><input name="q" type="search" value="${esc(v||"")}" placeholder="問原住民族事務或校園生活，例如：成績 65 分可以申請嗎" aria-label="搜尋 wiki"><button type="submit">搜尋</button></form>`; }
-const NODATA = `這個 wiki 目前只收錄 115 學年度第 1 學期原民會大專獎助學金的公告，以及政大原住民學生獎助學金作業要點。可以換個說法或關鍵字再試一次，或直接聯絡原資中心：電話 (02) 2939-3091 分機 67030、信箱 isrc@nccu.edu.tw。`;
+
+function statusBlock(){
+  const now = new Date(), fmt = d => d.toLocaleString("zh-TW",{timeZone:"Asia/Taipei",month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit",hour12:false});
+  const left = d => { const ms=d-now, h=Math.floor(ms/3600000), m=Math.floor(ms%3600000/60000); return h>=24?`還有 ${Math.floor(h/24)} 天 ${h%24} 小時`:`還有 ${h} 小時 ${m} 分`; };
+  if (now < DEADLINES.online) return `<div class="status"><b>開放申請中</b><span>線上申請截止 ${fmt(DEADLINES.online)}（${left(DEADLINES.online)}），紙本收件截止 ${fmt(DEADLINES.paper)}。</span></div>`;
+  if (now < DEADLINES.paper) return `<div class="status"><b>紙本今天 17:00 前要交</b><span>線上申請已截止。紙本收件截止 ${fmt(DEADLINES.paper)}（${left(DEADLINES.paper)}），交到行政大樓三樓原資中心。</span></div>`;
+  return `<div class="status"><b>本學期申請已截止</b><span>紙本收件已於 ${fmt(DEADLINES.paper)} 截止，下學期期程請留意原資中心公告。</span></div>`;
+}
+
+// ---------- 畫面 ----------
+const art = () => document.getElementById("art");
+const go = q => { location.hash = "#search=" + encodeURIComponent(q); };
+const START = `<p>可以先看看<a href="#/">首頁的重點一覽</a>，或<a href="#/${encodeURIComponent("我適合申請哪一種")}">我適合申請哪一種</a>。</p>`;
+const CONTACT = "原資中心：電話 (02) 2939-3091 分機 67030、信箱 isrc@nccu.edu.tw";
 let askSeq = 0;
-function keywordHtml(hits, withHead){
-  if (!hits.length) return "";
-  return (withHead ? `<h2 class="subhead">相關條目</h2>` : "") + `<ul class="hits">` + hits.map(x => `<li><a class="t" href="#/${encodeURIComponent(x.t)}">${esc(label(x.t))}</a><p>${snippet(x)}</p></li>`).join("") + `</ul>`;
-}
-function nodataHtml(){
-  return `<div class="nodata"><b>目前沒有這方面的資料</b>${NODATA}</div><p>也可以從這些條目開始看：<a class="wl" href="#/總覽">總覽</a>、<a class="wl" href="#/我適合申請哪一種">我適合申請哪一種</a>、<a class="wl" href="#/index">全部條目</a>。</p>`;
-}
-async function askAI(q, seq, hits){
-  const box = document.getElementById("ai"), rest = document.getElementById("kw");
-  const done = () => seq === askSeq && box;
-  try {
-    const r = await fetch(ASK_API, {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({question: q})});
-    const d = await r.json().catch(() => ({}));
-    if (!done()) return;
-        if (d.error === "question_too_long") throw new Error("問題太長了，請精簡到 200 字以內。");
-    if (!r.ok || d.error) throw new Error("AI 回答暫時無法使用，先看下方的關鍵字搜尋結果。");
-    const status = d.status || (d.found ? "answered" : "no_data");
-    if (status === "off_topic"){
-      box.className = "ai offtopic";
-      box.innerHTML = `<h2>不在服務範圍</h2><p class="ans">${esc(d.answer || "")}</p>`;
-      rest.innerHTML = `<p>可以從這些條目開始看：<a class="wl" href="#/總覽">總覽</a>、<a class="wl" href="#/我適合申請哪一種">我適合申請哪一種</a>、<a class="wl" href="#/index">全部條目</a>。</p>`;
-      return;
-    }
-    const srcs = (d.sources || []).filter(t => PAGES[t]);
-    box.className = "ai" + (status === "answered" ? "" : " nodata-ai");
-    box.innerHTML = `<h2>${status === "answered" ? "AI 回答" : "目前沒有這方面的資料"}</h2><p class="ans">${esc(d.answer || "").replace(/\n/g,"<br>")}</p>`
-      + (srcs.length ? `<p class="src">依據：${srcs.map(t => `<a class="wl" href="#/${encodeURIComponent(t)}">${esc(label(t))}</a>`).join("、")}</p>` : "")
-      + `<p class="note">由 AI 根據本 wiki 整理，可能有誤，請以原資中心與原民會正式公告為準。</p>`;
-    if (status !== "answered" && !hits.length) rest.innerHTML = `<p>也可以從這些條目開始看：<a class="wl" href="#/總覽">總覽</a>、<a class="wl" href="#/我適合申請哪一種">我適合申請哪一種</a>、<a class="wl" href="#/index">全部條目</a>。</p>`;
-  } catch (e) {
-    if (!done()) return;
-    box.className = "ai";
-    box.innerHTML = `<p class="wait">${esc(e.message && !/fetch|network/i.test(e.message) ? e.message : "AI 回答暫時無法使用，先看下方的關鍵字搜尋結果。")}</p>`;
-    if (!hits.length) rest.innerHTML = nodataHtml();
+
+const LOGTYPE = {ingest:"新增資料", query:"新增問答", lint:"健檢", feature:"新功能", publish:"發佈", fix:"修正", design:"改版"};
+function sections(md){
+  const out = {}; let cur = "_intro";
+  for (const line of md.replace(/^#\s.*\n/, "").split("\n")){
+    const m = line.match(/^##\s+(.+)$/);
+    if (m){ cur = m[1].trim(); out[cur] = ""; } else out[cur] = (out[cur] || "") + line + "\n";
   }
+  return out;
 }
+function box(title, inner){ return inner ? `<section class="box"><h2>${title}</h2>${inner}</section>` : ""; }
+function recentUpdates(n){
+  if (!PAGES.log) return "";
+  const items = [...PAGES.log.body.matchAll(/^##\s*\[(\d{4}-\d{2}-\d{2})\]\s*(\w+)\s*[｜|]\s*(.+)$/gm)].reverse().slice(0, n);
+  if (!items.length) return "";
+  return `<ul class="updates">${items.map(m => `<li><span class="k">${esc(LOGTYPE[m[2]] || m[2])}</span><span>${esc(m[3])}</span></li>`).join("")}</ul><p class="more"><a href="#/log">完整操作紀錄</a></p>`;
+}
+function showHome(){
+  document.body.classList.add("home");
+  const sec = PAGES[HOME] ? sections(PAGES[HOME].body) : {};
+  const count = order.filter(t => t !== "index" && t !== "log").length;
+  const left = box("重點一覽", render((sec._intro || "") + (sec["重點一覽"] || ""))) + box("從哪裡開始", sec["從哪裡開始"] ? render(sec["從哪裡開始"]) : "");
+  const right = box("截止提醒", statusBlock()) + box("最近更新", recentUpdates(5)) + box("原始文件", sec["原始文件"] ? render(sec["原始文件"]) : "");
+  art().innerHTML = `<section class="portal">
+      <div class="portal-head">
+        <div><h1>原民會大專獎助學金</h1><p class="sub">政大 115 學年度第 1 學期，有問題直接問</p></div>
+        <div class="stats">已有 <b>${count}</b> 篇條目<nav><a href="#/index">全部條目</a><a href="#/${encodeURIComponent("待確認事項")}">待確認事項</a><a href="#/log">操作紀錄</a></nav></div>
+      </div>
+      <form class="ask" id="homeform" role="search" autocomplete="off"><input id="homeq" type="search" placeholder="輸入你的問題" aria-label="提問" autocomplete="off" spellcheck="false"><button type="submit">提問</button></form>
+      <div class="examples"><span>試試看：</span>${EXAMPLES.map(x => `<button type="button" data-q="${esc(x)}">${esc(x)}</button>`).join("")}</div>
+    </section>
+    <div class="home-grid"><div class="col">${left}</div><div class="col">${right}</div></div>`;
+  document.title = "原民會大專獎助學金 LLM Wiki｜政大";
+}
+
+function showPage(t){
+  const p = PAGES[t];
+  let meta = "";
+  if (p.sources && p.sources.length) meta += `<p>依據來源：${p.sources.map(link).join("、")}</p>`;
+  const bl = [...(backlinks[t]||[])].filter(x => x !== t && x !== "index" && x !== "log");
+  if (bl.length) meta += `<p>連到這裡的條目：${bl.map(link).join("、")}</p>`;
+  if (p.updated) meta += `<p>最後更新：${esc(p.updated)}</p>`;
+  art().innerHTML = (TYPES[p.type] ? `<p class="crumb">${TYPES[p.type]}</p>` : "") + render(p.body) + (meta ? `<div class="meta">${meta}</div>` : "");
+  document.title = `${label(t)}｜原民會獎助學金 LLM Wiki`;
+}
+
+function relatedHtml(hits, withSnippet){
+  if (!hits.length) return "";
+  return `<section class="related"><h2>相關條目</h2><ul>${hits.slice(0,5).map(x => `<li>${link(x.t)}${withSnippet ? `<p>${snippet(x)}</p>` : ""}</li>`).join("")}</ul></section>`;
+}
+function answerBox(kind, labelText, text, extra){
+  return `<section class="answer ${kind}" id="ai" aria-live="polite"><p class="label">${labelText}</p><p class="text">${text}</p>${extra||""}</section>`;
+}
+
 function showSearch(q){
   const {hits} = search(q);
   const seq = ++askSeq;
-  let h = `<div class="crumb">搜尋</div><h1>「${esc(q)}」的搜尋結果</h1>` + askBox(q);
+  let h = `<p class="crumb">提問</p><h1 class="q-title">${esc(q)}</h1>`;
   if (ASK_API){
-    h += `<section class="ai" id="ai" aria-live="polite"><p class="wait">正在讀 wiki、整理回答…</p></section><div id="kw">${keywordHtml(hits, true)}</div>`;
+    h += `<section class="answer" id="ai" aria-live="polite"><p class="wait">正在讀 wiki、整理回答…</p></section><div id="rel">${relatedHtml(hits, false)}</div>`;
   } else {
-    h += hits.length ? keywordHtml(hits, false) : nodataHtml();
+    h += hits.length ? relatedHtml(hits, true) : answerBox("nodata", "目前沒有資料", `這個 wiki 還沒有這方面的內容。可以換個說法再問一次，或直接聯絡${CONTACT}。`, START);
   }
-  document.getElementById("art").innerHTML = h;
-  document.getElementById("side").innerHTML = "";
-  document.title = `搜尋：${q}｜原民會獎助學金 LLM Wiki`;
-  buildNav(null);
+  art().innerHTML = h;
+  document.title = `${q}｜原民會獎助學金 LLM Wiki`;
   if (ASK_API) askAI(q, seq, hits);
 }
-document.addEventListener("submit", e => {
-  const f = e.target; if (f.id !== "qform" && !f.hasAttribute("data-ask")) return;
-  e.preventDefault();
-  const v = (f.id === "qform" ? document.getElementById("q") : f.elements.q).value.trim();
-  if (v) location.hash = "#search=" + encodeURIComponent(v);
-});
+
+async function askAI(q, seq, hits){
+  const box = document.getElementById("ai"), rel = document.getElementById("rel");
+  const current = () => seq === askSeq && document.body.contains(box);
+  try {
+    const r = await fetch(ASK_API, {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({question: q})});
+    const d = await r.json().catch(() => ({}));
+    if (!current()) return;
+    if (d.error === "question_too_long") throw new Error("問題太長了，請精簡到 200 字以內。");
+    if (!r.ok || d.error) throw new Error("");
+    const status = d.status || (d.found ? "answered" : "no_data");
+    const note = `<p class="note">由 AI 根據本 wiki 整理，可能有誤，請以原資中心與原民會正式公告為準。</p>`;
+    if (status === "off_topic"){
+      box.outerHTML = answerBox("offtopic", "不在服務範圍", esc(d.answer || ""));
+      rel.innerHTML = "";
+      return;
+    }
+    const srcs = (d.sources || []).filter(t => PAGES[t]);
+    const text = esc(d.answer || "").replace(/\n/g,"<br>");
+    if (status === "answered"){
+      box.outerHTML = answerBox("", "回答", text, (srcs.length ? `<p class="src">依據：${srcs.map(link).join("、")}</p>` : "") + note);
+      if (srcs.length) rel.innerHTML = relatedHtml(hits.filter(h => !srcs.includes(h.t)), false);
+    } else {
+      box.outerHTML = answerBox("nodata", "目前沒有資料", text);
+      if (!hits.length) rel.innerHTML = START;
+    }
+  } catch (e) {
+    if (!current()) return;
+    const msg = e.message || "AI 回答暫時無法使用。";
+    box.outerHTML = hits.length
+      ? answerBox("offtopic", "AI 暫時無法回答", esc(msg) + " 可以先看下方的相關條目。")
+      : answerBox("nodata", "目前沒有資料", `${esc(msg)} 也可以直接聯絡${CONTACT}。`, START);
+  }
+}
 
 function show(){
+  document.body.classList.remove("home");
   const sm = location.hash.match(/^#search=(.*)$/);
-  if (sm){ const q = decodeURIComponent(sm[1]); document.getElementById("q").value = q; showSearch(q); window.scrollTo(0,0); document.getElementById("nav").classList.remove("open"); return; }
-  let t = decodeURIComponent(location.hash.replace(/^#\/?/,"")) || "總覽";
-  if (!PAGES[t]) t = "總覽";
-  const p = PAGES[t];
-  let html = "";
-  if (t==="總覽") html += statusBlock() + askBox("");
-  html = render(p.body).replace(/(<h1>.*?<\/h1>)/, "$1"+html);
-  const typeName = (GROUPS.find(g=>g[0]===p.type)||[,""])[1];
-  document.getElementById("art").innerHTML = (typeName && t!=="總覽" ? `<div class="crumb">${typeName}</div>` : "") + html;
-  let s = "";
-  const bl = [...(backlinks[t]||[])].filter(x=>x!==t && x!=="index" && x!=="log");
-  if (bl.length) s += `<h3>連到這裡的條目</h3><ul>${bl.map(x=>`<li><a class="wl" href="#/${encodeURIComponent(x)}">${esc(label(x))}</a></li>`).join("")}</ul>`;
-  if (p.sources && p.sources.length) s += `<h3>依據來源</h3><ul>${p.sources.map(x=>`<li><a class="wl" href="#/${encodeURIComponent(x)}">${esc(x.replace(/^來源-/,""))}</a></li>`).join("")}</ul>`;
-  if (p.updated) s += `<h3>更新</h3><p class="meta">${p.updated}</p>`;
-  document.getElementById("side").innerHTML = s;
-  document.title = (t==="總覽"?"":label(t)+"｜") + "原民會獎助學金 LLM Wiki";
-  buildNav(t);
+  if (sm){
+    const q = decodeURIComponent(sm[1]);
+    document.getElementById("topq").value = q;
+    showSearch(q);
+  } else {
+    document.getElementById("topq").value = "";
+    const t = decodeURIComponent(location.hash.replace(/^#\/?/,""));
+    if (!t || t === HOME || !PAGES[t]) showHome(); else showPage(t);
+  }
   window.scrollTo(0,0);
-  const nav = document.getElementById("nav"); nav.classList.remove("open"); document.getElementById("menubtn").setAttribute("aria-expanded","false");
 }
-document.getElementById("menubtn").addEventListener("click", e => {
-  const nav = document.getElementById("nav"); const open = nav.classList.toggle("open"); e.target.setAttribute("aria-expanded", open);
+
+document.addEventListener("submit", e => {
+  const id = e.target.id; if (id !== "topform" && id !== "homeform") return;
+  e.preventDefault();
+  const v = document.getElementById(id === "topform" ? "topq" : "homeq").value.trim();
+  if (v) go(v);
 });
+document.addEventListener("click", e => {
+  const b = e.target.closest(".examples button"); if (b) go(b.dataset.q);
+});
+
+// 外觀：文字大小、寬度、顏色，選擇會記在瀏覽器
 (function(){
-  const root = document.documentElement;
-  try { const s = localStorage.getItem("theme"); if (s) root.dataset.theme = s; } catch(e){}
-  document.getElementById("themebtn").addEventListener("click", () => {
-    const dark = root.dataset.theme ? root.dataset.theme==="dark" : matchMedia("(prefers-color-scheme: dark)").matches;
-    root.dataset.theme = dark ? "light" : "dark";
-    try { localStorage.setItem("theme", root.dataset.theme); } catch(e){}
+  const root = document.documentElement, btn = document.getElementById("appearBtn"), panel = document.getElementById("appearPanel");
+  const KEYS = {font:"standard", width:"standard", theme:"auto"};
+  let a = {};
+  try { a = JSON.parse(localStorage.getItem("appearance") || "{}"); } catch (e) {}
+  const cur = k => a[k] || KEYS[k];
+  const apply = () => {
+    for (const k of Object.keys(KEYS)){
+      const v = cur(k);
+      if (v === KEYS[k]) delete root.dataset[k]; else root.dataset[k] = v;
+      const r = panel.querySelector(`input[name="${k}"][value="${v}"]`); if (r) r.checked = true;
+    }
+  };
+  panel.addEventListener("change", e => {
+    a[e.target.name] = e.target.value;
+    try { localStorage.setItem("appearance", JSON.stringify(a)); } catch (err) {}
+    apply();
   });
+  panel.addEventListener("submit", e => e.preventDefault());
+  const open = v => { panel.hidden = !v; btn.setAttribute("aria-expanded", String(v)); };
+  btn.addEventListener("click", () => open(panel.hidden));
+  document.addEventListener("click", e => { if (!panel.hidden && !e.target.closest(".appear")) open(false); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && !panel.hidden){ open(false); btn.focus(); } });
+  apply();
 })();
+
 window.addEventListener("hashchange", show);
 load().then(show).catch(() => {
-  document.getElementById("art").innerHTML = `<h1>讀不到 wiki 內容</h1><p>這個網頁要透過網站伺服器開啟，直接雙擊 index.html 會讀不到 Markdown 檔。部署到網路上，或在資料夾裡執行 <code>python -m http.server</code> 再開 http://localhost:8000 即可。</p>`;
+  art().innerHTML = `<h1>讀不到 wiki 內容</h1><p>這個網頁要透過網站伺服器開啟，直接雙擊 index.html 會讀不到 Markdown 檔。部署到網路上，或在資料夾裡執行 <code>python -m http.server</code> 再開 http://localhost:8000 即可。</p>`;
 });
 </script>
 </body>
