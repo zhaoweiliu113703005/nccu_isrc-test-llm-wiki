@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>【原寶】原住民族學生資訊百科</title>
+<title>原寶，原住民族學生資訊百科</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;700&display=swap" rel="stylesheet">
 <script>
   // 先套用使用者在「外觀」選過的設定，避免載入時閃一下
   try {
@@ -18,197 +18,268 @@
 </script>
 <style>
 :root{
-  --bg:#ffffff; --ink:#000000; --muted:#555555; --line:#d4d4d4; --soft:#f3f3f3;
+  --bg:#ffffff; --ink:#202122; --muted:#54595d; --line:#c8ccd1; --soft:#f8f9fa;
+  --link:#3366cc; --link-visited:#795cb2; --link-hover:#2a4b8d;
+  --banner:linear-gradient(180deg,#fbfcff 0%,#eef3fc 100%); --banner-line:#a7d7f9;
   --sans:"Noto Sans TC","PingFang TC","Microsoft JhengHei","Heiti TC",system-ui,sans-serif;
   --serif:"Noto Serif TC","Songti TC","PMingLiU",serif;
-  --col:720px; --wide:1160px; --scale:1;
+  --page:1780px; --scale:1;
   color-scheme:light;
   box-sizing:border-box;
   padding-bottom:env(safe-area-inset-bottom,0px);
 }
 @media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){ --bg:#000000; --ink:#ffffff; --muted:#a8a8a8; --line:#3a3a3a; --soft:#141414; color-scheme:dark; }
+  :root:not([data-theme="light"]){ --bg:#101418; --ink:#eaecf0; --muted:#a2a9b1; --line:#54595d; --soft:#1b2026; --link:#88a3e8; --link-visited:#a799cd; --link-hover:#b0c3f2; --banner:linear-gradient(180deg,#141a22 0%,#18243a 100%); --banner-line:#3e5a8a; color-scheme:dark; }
 }
 :root[data-font="small"]{--scale:.9}
 :root[data-font="large"]{--scale:1.15}
-:root[data-width="wide"]{--col:960px;--wide:1400px}
-:root[data-theme="dark"]{ --bg:#000000; --ink:#ffffff; --muted:#a8a8a8; --line:#3a3a3a; --soft:#141414; color-scheme:dark; }
+:root[data-width="wide"]{--page:100%}
+:root[data-theme="dark"]{ --bg:#101418; --ink:#eaecf0; --muted:#a2a9b1; --line:#54595d; --soft:#1b2026; --link:#88a3e8; --link-visited:#a799cd; --link-hover:#b0c3f2; --banner:linear-gradient(180deg,#141a22 0%,#18243a 100%); --banner-line:#3e5a8a; color-scheme:dark; }
 *,*::before,*::after{box-sizing:inherit}
-html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 90px)}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:calc(17px * var(--scale));line-height:1.85}
-a{color:var(--ink);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
-a:hover{text-decoration-thickness:2px}
-:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:2px}
-button,input{font:inherit;color:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:calc(16px * var(--scale));line-height:1.75}
+a{color:var(--link);text-decoration:none}
+a:visited{color:var(--link-visited)}
+a:hover{color:var(--link-hover);text-decoration:underline;text-underline-offset:2px}
+.logo,.logo:visited,.logo:hover{color:var(--ink);text-decoration:none}
+:focus-visible{outline:2px solid var(--link);outline-offset:2px}
+button,input,textarea{font:inherit;color:inherit}
 
-/* 頂部：標誌、搜尋、外觀 */
-header.top{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
-.top-inner{max-width:var(--wide);margin:0 auto;padding:12px 24px;display:flex;align-items:center;gap:28px}
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex:none}
-.mark{display:grid;place-items:center;width:40px;height:40px;background:var(--ink);color:var(--bg);font-family:var(--serif);font-weight:900;font-size:calc(24px * var(--scale));border-radius:6px;line-height:1}
-.bt{display:flex;flex-direction:column;line-height:1.25}
-.bt b{font-family:var(--serif);font-weight:900;font-size:calc(20px * var(--scale));letter-spacing:.04em}
-.bt small{font-size:calc(12px * var(--scale));color:var(--muted)}
-.top-search{flex:1;max-width:640px}
-.top-search form{display:flex}
-.top-search input{flex:1;min-width:0;height:46px;padding:0 16px;border:1.5px solid var(--ink);border-right:0;border-radius:10px 0 0 10px;background:var(--bg);font-size:calc(17px * var(--scale))}
-.top-search input:focus{outline:none;box-shadow:inset 0 0 0 1px var(--ink)}
-.top-search button{padding:0 22px;border:1.5px solid var(--ink);border-radius:0 10px 10px 0;background:var(--ink);color:var(--bg);font-weight:700;font-size:calc(16px * var(--scale));cursor:pointer}
-.appear{position:relative;margin-left:auto;flex:none}
-.appear-btn{background:none;border:1px solid var(--line);border-radius:8px;padding:5px 12px;font-size:calc(14px * var(--scale));cursor:pointer;white-space:nowrap}
-.appear-btn:hover,.appear-btn[aria-expanded="true"]{border-color:var(--ink)}
-.appear-panel{position:absolute;right:0;top:calc(100% + 8px);width:230px;background:var(--bg);border:1px solid var(--ink);border-radius:10px;padding:6px 18px 12px;z-index:40;line-height:1.5}
-.appear-panel[hidden]{display:none}
-.appear-panel fieldset{border:0;margin:0;padding:10px 0;border-bottom:1px solid var(--line)}
-.appear-panel fieldset:last-child{border-bottom:0}
-.appear-panel legend{font-weight:700;font-size:calc(14px * var(--scale));padding:0;margin-bottom:4px;float:left;width:100%}
-.appear-panel label{display:flex;align-items:center;gap:8px;padding:3px 0;font-size:calc(15px * var(--scale));cursor:pointer;clear:both}
-.appear-panel input{accent-color:var(--ink);width:16px;height:16px;margin:0}
+/* ===== 頂部（仿 Wikipedia：選單、標誌、搜尋、右側連結） ===== */
+.hd{padding-top:env(safe-area-inset-top,0px)}
+.hd-in{max-width:var(--page);margin:0 auto;padding:14px 32px;display:flex;align-items:center;gap:20px}
+.menu{position:relative}
+.icon-btn{display:grid;place-items:center;width:40px;height:40px;background:none;border:0;border-radius:4px;cursor:pointer}
+.icon-btn:hover{background:var(--soft)}
+.burger{background:var(--ink)}
+.burger{display:block;width:20px;height:2px;background:var(--ink);box-shadow:0 -6px 0 var(--ink),0 6px 0 var(--ink)}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex:none}
+.mark{display:grid;place-items:center;width:48px;height:48px;border:2px solid var(--ink);border-radius:50%;font-family:var(--serif);font-weight:700;font-size:calc(26px * var(--scale));line-height:1}
+.wm{display:flex;flex-direction:column;line-height:1.2}
+.wm b{font-family:var(--serif);font-weight:700;font-size:calc(25px * var(--scale));letter-spacing:.18em}
+.wm small{font-family:var(--serif);font-size:calc(13px * var(--scale));letter-spacing:.04em}
+.search{flex:0 1 620px;display:flex;margin-left:12px}
+.search input{flex:1;min-width:0;height:44px;padding:0 14px;border:1px solid var(--muted);border-right:0;border-radius:4px 0 0 4px;background:var(--bg);font-size:calc(16px * var(--scale))}
+.search input:focus{outline:none;border-color:var(--link);box-shadow:inset 0 0 0 1px var(--link)}
+.search button{padding:0 20px;border:1px solid var(--muted);border-radius:0 4px 4px 0;background:var(--soft);font-weight:700;font-size:calc(15px * var(--scale));cursor:pointer}
+.search button:hover{background:var(--bg);border-color:var(--ink)}
+.usr{margin-left:auto;display:flex;align-items:center;gap:16px;font-size:calc(15px * var(--scale));position:relative;white-space:nowrap}
+.usr a{text-decoration:none}
+.usr a:hover{text-decoration:underline}
+.appear-btn{background:none;border:1px solid var(--line);border-radius:4px;padding:4px 10px;font-size:calc(14px * var(--scale));cursor:pointer}
+.appear-btn[hidden]{display:none}
+.dropdown{position:absolute;top:calc(100% + 6px);z-index:50;background:var(--bg);border:1px solid var(--line);box-shadow:0 2px 8px rgba(0,0,0,.18);padding:12px 16px;min-width:220px}
+.dropdown[hidden]{display:none}
+.dropdown.left{left:0}
+.dropdown.right{right:0}
+.dropdown .dh{font-size:calc(13px * var(--scale));color:var(--muted);margin:8px 0 2px;padding-bottom:4px;border-bottom:1px solid var(--line)}
+.dropdown .dh:first-child{margin-top:0}
+.dropdown a{display:block;padding:4px 0;text-decoration:none;font-size:calc(15px * var(--scale))}
+.dropdown a:hover{text-decoration:underline}
 
-main{max-width:var(--col);margin:0 auto;padding:16px 24px 80px}
-body.home main{max-width:var(--wide)}
+/* 網站公告（仿 Wikipedia 頂部那條置中公告） */
+.notice{max-width:var(--page);margin:0 auto;padding:6px 72px 14px;text-align:center;font-size:calc(15px * var(--scale));position:relative}
+.notice[hidden]{display:none}
+.notice .x{position:absolute;right:32px;top:2px;width:32px;height:32px;background:none;border:0;cursor:pointer;font-size:calc(22px * var(--scale));line-height:1}
 
-/* 分頁標籤（仿 Wikipedia 的 首頁｜閱讀 檢視原始碼 檢視歷史） */
-.tabs{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;border-bottom:1px solid var(--line);margin:0 0 28px;font-size:calc(15px * var(--scale))}
-.tabs div{display:flex;gap:18px}
-.tabs a{text-decoration:none;padding:8px 2px 7px;border-bottom:2px solid transparent;margin-bottom:-1px;color:var(--muted);white-space:nowrap}
-.tabs a:hover{color:var(--ink)}
+/* ===== 版面：目錄｜內容｜外觀 ===== */
+.page{max-width:var(--page);margin:0 auto;padding:0 32px;display:grid;grid-template-columns:minmax(0,1fr);gap:40px;align-items:start}
+body.has-toc .page{grid-template-columns:200px minmax(0,1fr)}
+body.has-tools .page{grid-template-columns:minmax(0,1fr) 210px}
+body.has-toc.has-tools .page{grid-template-columns:200px minmax(0,1fr) 210px}
+.toc,.tools{display:none;position:sticky;top:16px;font-size:calc(14px * var(--scale));line-height:1.6;padding-top:8px}
+body.has-toc .toc,body.has-tools .tools{display:block}
+.side-h{display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:calc(15px * var(--scale));padding-bottom:6px;border-bottom:1px solid var(--line);margin-bottom:8px}
+.side-h button{background:var(--soft);border:0;border-radius:3px;padding:1px 8px;font-size:calc(13px * var(--scale));cursor:pointer;font-weight:400}
+.toc ul{list-style:none;margin:0;padding:0}
+.toc li{margin:5px 0}
+.toc a{text-decoration:none}
+.toc a:hover{text-decoration:underline}
+.ap fieldset{border:0;margin:0 0 14px;padding:0}
+.ap legend{font-size:calc(14px * var(--scale));width:100%;padding:0 0 4px;margin-bottom:4px;border-bottom:1px solid var(--line)}
+.ap label{display:flex;align-items:center;gap:8px;padding:3px 0;font-size:calc(15px * var(--scale));cursor:pointer}
+.ap input{accent-color:var(--ink);width:17px;height:17px;margin:0}
+main{min-width:0;padding-bottom:64px}
+
+/* 分頁標籤（首頁｜閱讀 檢視原始碼 檢視歷史） */
+.tabs{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;border-bottom:1px solid var(--line);margin:0 0 16px;font-size:calc(15px * var(--scale))}
+.tabs div{display:flex;gap:20px}
+.tabs a{text-decoration:none;padding:6px 0 5px;border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap}
+.tabs a:hover{text-decoration:underline}
 .tabs a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--ink);font-weight:700}
+.tabs a[aria-current="page"]:hover{text-decoration:none}
 
-/* 首頁歡迎橫幅 */
-.welcome{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:28px;align-items:center;background:var(--soft);border-bottom:2px solid var(--ink);padding:28px 32px;margin:0 0 28px}
-.emblem{display:grid;place-items:center;width:104px;height:104px;background:var(--ink);color:var(--bg);font-family:var(--serif);font-weight:900;font-size:calc(62px * var(--scale));border-radius:12px;line-height:1}
-.welcome h1{font-family:var(--serif);font-weight:900;font-size:calc(clamp(32px,5vw,46px) * var(--scale));line-height:1.15;margin:0 0 6px;letter-spacing:.04em}
-.welcome .tag{font-size:calc(17px * var(--scale));margin:0 0 6px}
-.welcome .intro{font-size:calc(14px * var(--scale));color:var(--muted);margin:0;line-height:1.75;max-width:52ch}
-.welcome .try{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:12px 0 0;font-size:calc(14px * var(--scale));color:var(--muted)}
-.welcome .try button{background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:3px 13px;font-size:calc(14px * var(--scale));color:var(--ink);cursor:pointer}
-.welcome .try button:hover{border-color:var(--ink)}
-.stats{text-align:center;min-width:220px}
-.stats .n{font-size:calc(16px * var(--scale));margin:0 0 6px}
-.stats .n b{font-size:calc(26px * var(--scale));font-weight:700;margin:0 4px}
-.stats nav{display:grid;grid-template-columns:repeat(3,auto);gap:4px 18px;justify-content:center;font-size:calc(15px * var(--scale))}
+/* ===== 首頁 ===== */
+.banner{display:grid;grid-template-columns:200px minmax(0,1fr) auto;align-items:center;gap:24px;background:var(--banner);border-bottom:1px solid var(--banner-line);overflow:hidden;min-height:150px;padding-right:28px;margin-bottom:26px}
+.globe{position:relative;height:150px}
+.globe span{position:absolute;left:-30px;top:-10px;width:190px;height:190px;border:3px solid var(--ink);border-radius:50%;display:grid;place-items:center;font-family:var(--serif);font-weight:700;font-size:calc(96px * var(--scale));line-height:1}
+.banner h1{color:var(--link);font-family:var(--sans);font-weight:700;font-size:calc(46px * var(--scale));line-height:1.15;margin:0 0 8px;letter-spacing:.06em}
+.banner p{margin:0;font-size:calc(16px * var(--scale));line-height:1.7}
+.stats{text-align:center}
+.stats .n{font-size:calc(20px * var(--scale));margin:0 0 4px;font-weight:700;color:var(--link)}
+.stats .n b{font-size:calc(22px * var(--scale));letter-spacing:.02em;margin:0 3px}
+.stats nav{display:grid;grid-template-columns:repeat(3,auto);gap:2px 28px;justify-content:center;font-size:calc(17px * var(--scale))}
+.stats nav a{text-decoration:none}
+.stats nav a:hover{text-decoration:underline}
+.mp{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:start}
+.mp h2{font-family:var(--sans);font-weight:700;font-size:calc(21px * var(--scale));letter-spacing:.15em;margin:0 0 14px}
+.mp-l h2{color:var(--link-hover)}
+.mp-l section{padding:0 0 22px;margin:0 0 22px;border-bottom:1px solid var(--line)}
+.mp-l section:last-child{border-bottom:0}
+.mp-r{border:1px solid var(--line);padding:22px 28px}
+.mp-r section{margin:0 0 22px}
+.mp ul{padding-left:1.2em;margin:0 0 12px}
+.mp li{margin:6px 0}
+.mp .tablewrap{margin:12px 0 0}
+.mp .line{margin:6px 0;font-size:calc(15.5px * var(--scale))}
+.mp .line b{font-weight:700}
+.mp .foot{text-align:right;font-size:calc(14px * var(--scale));margin:10px 0 0}
+.mp .other{font-size:calc(15px * var(--scale));margin:12px 0 0}
+.mp .other b{font-weight:700}
 
-/* 首頁兩欄 */
-.home-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:start}
-.home-grid .col{display:grid;gap:28px}
-.sec{border:1px solid var(--line);padding:20px 24px}
-.sec h2{font-family:var(--serif);font-weight:900;font-size:calc(21px * var(--scale));letter-spacing:.12em;margin:0 0 14px;padding-bottom:8px;border-bottom:1px solid var(--line)}
-.sec p:first-of-type{margin-top:0}
-.sec ul{padding-left:1.2em;margin:0}
-.sec li{margin:8px 0}
-.sec .tablewrap{margin:12px 0 0}
-.sec strong{font-weight:700}
-.sec .more{margin:12px 0 0;font-size:calc(14px * var(--scale));text-align:right}
-.updates{list-style:none;padding:0!important}
-.updates li{display:flex;gap:12px;font-size:calc(15px * var(--scale));line-height:1.6;padding:6px 0;border-bottom:1px solid var(--line);margin:0!important}
-.updates li:last-child{border-bottom:0}
-.updates .k{flex:none;font-weight:700;min-width:4.5em}
+/* ===== 條目 ===== */
+.ptitle{font-family:var(--serif);font-weight:500;font-size:calc(clamp(26px,4vw,32px) * var(--scale));line-height:1.3;margin:0;padding:8px 0 4px}
+.from{font-size:calc(14px * var(--scale));color:var(--muted);margin:0 0 18px}
+.body h1{display:none}
+.body h2{font-family:var(--serif);font-weight:500;font-size:calc(24px * var(--scale));line-height:1.4;margin:28px 0 10px;padding-bottom:3px;border-bottom:1px solid var(--line)}
+.body ul,.body ol{padding-left:1.6em}
+.body li{margin:4px 0}
+.body strong{font-weight:700}
+.body code{font-size:.88em;background:var(--soft);padding:1px 5px;border-radius:3px;word-break:break-all}
+.body pre{background:var(--soft);padding:14px;overflow-x:auto;font-size:calc(14px * var(--scale));line-height:1.6}
+.body img{max-width:100%;height:auto;display:block;border:1px solid var(--line);margin:14px 0}
+.tablewrap{overflow-x:auto;margin:14px 0}
+table{border-collapse:collapse;font-size:calc(15px * var(--scale));line-height:1.6;background:var(--bg)}
+.body table{border:1px solid var(--line)}
+th,td{text-align:left;padding:7px 12px;border:1px solid var(--line);vertical-align:top}
+th{font-weight:700;background:var(--soft)}
+.mp table{width:100%}
+.mp th,.mp td{border-width:0 0 1px}
+.cats{margin:36px 0 0;border:1px solid var(--line);background:var(--soft);padding:8px 12px;font-size:calc(14px * var(--scale));line-height:1.9}
+.cats b{font-weight:700}
+.src-note{font-size:calc(15px * var(--scale));margin:0 0 12px}
+.src-box{width:100%;min-height:440px;padding:10px;border:1px solid var(--line);background:var(--soft);font-family:ui-monospace,Consolas,"Noto Sans Mono",monospace;font-size:calc(14px * var(--scale));line-height:1.6;resize:vertical}
 
-/* 條目內文 */
-article h1{font-family:var(--serif);font-weight:900;font-size:calc(clamp(28px,5vw,38px) * var(--scale));line-height:1.3;margin:0 0 24px}
-article h2{font-family:var(--serif);font-weight:600;font-size:calc(23px * var(--scale));line-height:1.4;margin:40px 0 12px}
-article ul,article ol{padding-left:1.4em}
-article li{margin:4px 0}
-article strong{font-weight:700}
-article code{font-size:.88em;background:var(--soft);padding:1px 6px;border-radius:4px;word-break:break-all}
-article pre{background:var(--soft);padding:16px;border-radius:8px;overflow-x:auto;font-size:calc(14px * var(--scale));line-height:1.7;white-space:pre-wrap;word-break:break-word}
-article pre code{background:none;padding:0}
-article img{max-width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:6px;margin:16px 0}
-.tablewrap{overflow-x:auto;margin:16px 0}
-table{border-collapse:collapse;width:100%;font-size:calc(15.5px * var(--scale));line-height:1.6}
-th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
-th{font-weight:700;border-bottom:2px solid var(--ink)}
-.meta{margin-top:56px;padding-top:16px;border-top:1px solid var(--line);font-size:calc(15px * var(--scale));color:var(--muted);line-height:1.8}
-.meta p{margin:0 0 6px}
-.meta a{color:var(--ink)}
-.lead{color:var(--muted);font-size:calc(15px * var(--scale))}
-
-/* 提問結果 */
-.q-title{font-family:var(--serif);font-weight:900;font-size:calc(clamp(24px,4.5vw,32px) * var(--scale));line-height:1.35;margin:0 0 24px}
-.answer{border:2px solid var(--ink);border-radius:10px;padding:18px 20px;margin:0 0 32px}
-.answer.nodata{border-style:dashed}
+/* ===== 提問結果 ===== */
+.ask-line{font-size:calc(16px * var(--scale));margin:0 0 16px}
+.answer{border:2px solid var(--link);padding:16px 20px;margin:0 0 28px}
+.answer.nodata{border-style:dashed;border-color:var(--ink)}
 .answer.offtopic{border:1px solid var(--line)}
 .answer .label{font-size:calc(14px * var(--scale));font-weight:700;margin:0 0 6px}
-.answer .text{margin:0;font-size:calc(17.5px * var(--scale))}
+.answer .text{margin:0;font-size:calc(17px * var(--scale))}
 .answer.offtopic .text{color:var(--muted)}
-.answer .src{margin:12px 0 0;font-size:calc(15px * var(--scale))}
-.answer .note{margin:10px 0 0;font-size:calc(13px * var(--scale));color:var(--muted)}
+.answer .src{margin:10px 0 0;font-size:calc(15px * var(--scale))}
+.answer .note{margin:8px 0 0;font-size:calc(13px * var(--scale));color:var(--muted)}
 .answer .wait{margin:0;color:var(--muted)}
-.related h2{font-size:calc(15px * var(--scale));font-weight:700;margin:0 0 8px;font-family:var(--sans)}
-.related ul{list-style:none;padding:0;margin:0}
-.related li{padding:8px 0;border-bottom:1px solid var(--line)}
-.related li p{margin:2px 0 0;font-size:calc(15px * var(--scale));color:var(--muted);line-height:1.7}
-.related mark{background:none;color:var(--ink);font-weight:700}
+.results h2{font-size:calc(15px * var(--scale));font-weight:700;margin:0 0 6px;padding-bottom:4px;border-bottom:1px solid var(--line)}
+.results ul{list-style:none;padding:0;margin:0}
+.results li{margin:0 0 16px}
+.results li a{font-size:calc(17px * var(--scale))}
+.results mark{color:inherit}
+.results li p{margin:2px 0 0;font-size:calc(15px * var(--scale));line-height:1.6}
+.results li small{color:var(--muted);font-size:calc(13px * var(--scale))}
+.results mark{background:none;color:inherit;font-weight:700}
 
-footer{max-width:var(--col);margin:0 auto;padding:0 24px 48px;font-size:calc(13.5px * var(--scale));color:var(--muted);line-height:1.8}
-body.home footer{max-width:var(--wide)}
-footer .in{border-top:1px solid var(--line);padding-top:20px}
-footer nav{margin-bottom:6px}
-footer a{color:var(--muted)}
+/* ===== 頁尾 ===== */
+footer{max-width:var(--page);margin:0 auto;padding:0 32px 40px;font-size:calc(13.5px * var(--scale));line-height:1.8}
+footer .in{border-top:1px solid var(--line);padding-top:16px}
+footer p{margin:0 0 8px}
+footer nav a{margin-right:16px}
 
-@media (max-width:900px){
-  .home-grid{grid-template-columns:minmax(0,1fr)}
-  .welcome{grid-template-columns:auto minmax(0,1fr)}
-  .stats{grid-column:1 / -1;text-align:left;min-width:0}
+/* ===== 較窄的螢幕 ===== */
+@media (max-width:1000px){
+  body.has-toc .page{grid-template-columns:minmax(0,1fr)}
+  body.has-toc .toc{display:none}
+  .mp{grid-template-columns:minmax(0,1fr)}
+  .banner{grid-template-columns:150px minmax(0,1fr)}
+  .stats{grid-column:1 / -1;padding:0 0 18px 24px;text-align:left}
   .stats nav{justify-content:start}
 }
-@media (max-width:640px){
-  .top-inner{flex-wrap:wrap;gap:10px 12px;padding:10px 14px}
-  .top-search{order:3;flex-basis:100%;max-width:none}
-  .top-search input{height:44px;font-size:calc(16px * var(--scale))}
-  .mark{width:34px;height:34px;font-size:calc(20px * var(--scale))}
-  .bt b{font-size:calc(18px * var(--scale))}
-  main{padding:12px 14px 64px}
-  footer{padding:0 14px 40px}
+@media (max-width:720px){
+  .hd-in{flex-wrap:wrap;gap:8px 10px;padding:10px 12px}
+  .mark{width:38px;height:38px;font-size:calc(20px * var(--scale))}
+  .wm b{font-size:calc(20px * var(--scale))}
+  .wm small{font-size:calc(12px * var(--scale))}
+  .search{order:3;flex:1 1 100%;margin:0}
+  .usr a{display:none}
+  .notice{padding:4px 44px 10px 14px;text-align:left;font-size:calc(14px * var(--scale))}
+  .notice .x{right:8px}
+  .page{padding:0 12px}
+  footer{padding:0 12px 32px}
+  .banner{grid-template-columns:minmax(0,1fr);padding:18px 16px;gap:10px}
+  .globe{display:none}
+  .banner h1{font-size:calc(34px * var(--scale))}
+  .stats{padding:0}
+  .mp-r{padding:16px}
   .tabs{font-size:calc(14px * var(--scale))}
   .tabs div{gap:12px}
-  .welcome{grid-template-columns:minmax(0,1fr);padding:20px 18px;gap:16px}
-  .emblem{display:none}
-  .sec{padding:16px 18px}
-  body{font-size:calc(16.5px * var(--scale))}
 }
 </style>
 </head>
 <body>
-<header class="top">
-  <div class="top-inner">
-    <a class="brand" href="#/" aria-label="原寶首頁"><span class="mark" aria-hidden="true">原</span><span class="bt"><b>【原寶】</b><small>LLM Wiki 整理的原住民族學生百科</small></span></a>
-    <div class="top-search"><form id="topform" role="search" autocomplete="off"><input id="topq" type="search" placeholder="在原寶提問，例如：要交哪些文件" aria-label="提問" autocomplete="off" spellcheck="false"><button type="submit">提問</button></form></div>
-    <div class="appear">
-      <button class="appear-btn" id="appearBtn" type="button" aria-expanded="false" aria-controls="appearPanel">外觀</button>
-      <form class="appear-panel" id="appearPanel" hidden>
-        <fieldset><legend>文字</legend>
-          <label><input type="radio" name="font" value="small">小</label>
-          <label><input type="radio" name="font" value="standard">標準</label>
-          <label><input type="radio" name="font" value="large">大</label>
-        </fieldset>
-        <fieldset><legend>寬度</legend>
-          <label><input type="radio" name="width" value="standard">標準</label>
-          <label><input type="radio" name="width" value="wide">寬</label>
-        </fieldset>
-        <fieldset><legend>顏色</legend>
-          <label><input type="radio" name="theme" value="auto">自動（跟著系統）</label>
-          <label><input type="radio" name="theme" value="light">淺色</label>
-          <label><input type="radio" name="theme" value="dark">深色</label>
-        </fieldset>
-      </form>
+<header class="hd">
+  <div class="hd-in">
+    <div class="menu">
+      <button class="icon-btn" id="menuBtn" type="button" aria-label="主選單" aria-expanded="false" aria-controls="menuPanel"><span class="burger" aria-hidden="true"></span></button>
+      <nav class="dropdown left" id="menuPanel" hidden aria-label="主選單">
+        <p class="dh">導覽</p>
+        <a href="#/">首頁</a>
+        <a href="#/index">全部條目</a>
+        <a href="#/%E9%97%9C%E6%96%BC%E5%8E%9F%E5%AF%B6">關於原寶</a>
+        <p class="dh">原寶</p>
+        <a href="#/%E5%BE%85%E7%A2%BA%E8%AA%8D%E4%BA%8B%E9%A0%85">待確認事項</a>
+        <a href="#/log">操作紀錄</a>
+        <a href="#/%E5%8E%9F%E4%BD%8F%E6%B0%91%E6%97%8F%E5%AD%B8%E7%94%9F%E8%B3%87%E6%BA%90%E4%B8%AD%E5%BF%83">聯絡原資中心</a>
+      </nav>
+    </div>
+    <a class="logo" href="#/" aria-label="原寶首頁"><span class="mark" aria-hidden="true">原</span><span class="wm"><b>原寶</b><small>LLM Wiki 整理的原住民族學生百科</small></span></a>
+    <form class="search" id="topform" role="search" autocomplete="off"><input id="topq" type="search" placeholder="在原寶提問" aria-label="在原寶提問" autocomplete="off" spellcheck="false"><button type="submit">提問</button></form>
+    <div class="usr">
+      <a href="#/%E9%97%9C%E6%96%BC%E5%8E%9F%E5%AF%B6">關於原寶</a>
+      <a href="#/index">全部條目</a>
+      <button class="appear-btn" id="appearBtn" type="button" aria-expanded="false" aria-controls="appearDrop" hidden>外觀</button>
+      <div class="dropdown right" id="appearDrop" hidden></div>
     </div>
   </div>
 </header>
-<main><article id="art"></article></main>
+<div class="notice" id="notice" hidden><span id="noticeText"></span><button class="x" id="noticeX" type="button" aria-label="關閉公告">×</button></div>
+<div class="page">
+  <nav class="toc" id="toc" aria-label="目錄"></nav>
+  <main><article id="art"></article></main>
+  <aside class="tools" id="tools" aria-label="外觀"></aside>
+</div>
 <footer><div class="in">
-  <nav><a href="#/%E9%97%9C%E6%96%BC%E5%8E%9F%E5%AF%B6">關於原寶</a>　<a href="#/index">全部條目</a>　<a href="#/log">操作紀錄</a></nav>
-  【原寶】由 LLM 依 Karpathy 的 LLM Wiki 模式整理：原始資料保存在 raw/，條目由 LLM 依 AGENTS.md 規則撰寫、交叉連結並持續維護。內容僅供參考，請以原資中心與原民會正式公告為準。
+  <p id="modified"></p>
+  <p>原寶由 LLM 依 Karpathy 的 LLM Wiki 模式整理：原始資料保存在 raw/，條目由 LLM 依 AGENTS.md 規則撰寫、交叉連結並持續維護。內容僅供參考，請以原資中心與原民會正式公告為準。</p>
+  <nav><a href="#/%E9%97%9C%E6%96%BC%E5%8E%9F%E5%AF%B6">關於原寶</a><a href="#/index">全部條目</a><a href="#/log">操作紀錄</a><a href="#/%E5%BE%85%E7%A2%BA%E8%AA%8D%E4%BA%8B%E9%A0%85">待確認事項</a></nav>
 </div></footer>
+
+<!-- 外觀面板：寬螢幕固定在右側欄，窄螢幕或按「隱藏」後收進右上角的「外觀」按鈕 -->
+<template id="appearTpl">
+  <form class="ap" id="ap">
+    <div class="side-h"><span>外觀</span><button type="button" id="pinBtn">隱藏</button></div>
+    <fieldset><legend>文字</legend>
+      <label><input type="radio" name="font" value="small">小</label>
+      <label><input type="radio" name="font" value="standard">標準</label>
+      <label><input type="radio" name="font" value="large">大</label>
+    </fieldset>
+    <fieldset><legend>寬度</legend>
+      <label><input type="radio" name="width" value="standard">標準</label>
+      <label><input type="radio" name="width" value="wide">寬</label>
+    </fieldset>
+    <fieldset><legend>顏色</legend>
+      <label><input type="radio" name="theme" value="auto">自動</label>
+      <label><input type="radio" name="theme" value="light">淺色</label>
+      <label><input type="radio" name="theme" value="dark">深色</label>
+    </fieldset>
+  </form>
+</template>
+
 <script src="assets/marked.min.js"></script>
 <script>
 // ===== 設定 =====
 // AI 問答的網址。部署在 Vercel 時維持 "/api/ask" 即可。改成 "" = 關閉 AI，只用關鍵字搜尋
 const ASK_API = "/api/ask";
-// 首頁「試試看問」的範例問題
-const EXAMPLES = ["成績 65 分可以申請嗎", "要交哪些文件", "什麼時候截止"];
-// 首頁「最新消息」第一則的截止倒數
+// 截止時間：頂部公告與首頁「最新消息」第一則會依這裡自動倒數
 const DEADLINES = {online:new Date("2026-10-14T23:59:00+08:00"), paper:new Date("2026-10-15T17:00:00+08:00")};
 // ================
 
@@ -222,7 +293,7 @@ const LABEL = {index:"全部條目", log:"操作紀錄"};
 const label = t => LABEL[t] || t;
 
 function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
-const href = t => `#/${encodeURIComponent(t)}`;
+const href = t => t === HOME ? "#/" : `#/${encodeURIComponent(t)}`;
 const link = (t, text) => `<a href="${href(t)}">${esc(text || label(t).replace(/^來源-/,"來源："))}</a>`;
 function wikify(md){ return md.replace(/\[\[(.+?)\]\]/g,(m,t)=> PAGES[t] ? link(t) : esc(t)); }
 function render(md){
@@ -303,27 +374,42 @@ function snippet(h){
 }
 
 // ---------- 共用 ----------
-const art = () => document.getElementById("art");
+const $ = id => document.getElementById(id);
 const go = q => { location.hash = "#search=" + encodeURIComponent(q); };
-const START = `<p>可以先看看<a href="#/">首頁的重點一覽</a>，或<a href="${href("我適合申請哪一種")}">我適合申請哪一種</a>。</p>`;
 const CONTACT = "原資中心：電話 (02) 2939-3091 分機 67030、信箱 isrc@nccu.edu.tw";
+const START = `<p>可以先看看<a href="#/">首頁的重點一覽</a>，或<a href="${href("我適合申請哪一種")}">我適合申請哪一種</a>。</p>`;
 let askSeq = 0;
 
-// 分頁標籤：左邊是頁面種類，右邊是 閱讀／原始碼／歷史
+function layout(kind){ // kind: home | page | plain
+  document.body.classList.toggle("home", kind === "home");
+  document.body.classList.toggle("has-toc", kind === "page");
+  if (kind !== "page") $("toc").innerHTML = "";
+}
 function tabs(leftLabel, t, active){
   const right = t && PAGES[t]
-    ? `<a href="${t === HOME ? "#/" : href(t)}" ${active === "read" ? 'aria-current="page"' : ""}>閱讀</a><a href="#source=${encodeURIComponent(t)}" ${active === "source" ? 'aria-current="page"' : ""}>原始碼</a><a href="#/log">歷史</a>`
+    ? `<a href="${href(t)}" ${active === "read" ? 'aria-current="page"' : ""}>閱讀</a><a href="#source=${encodeURIComponent(t)}" ${active === "source" ? 'aria-current="page"' : ""}>檢視原始碼</a><a href="#/log">檢視歷史</a>`
     : "";
-  return `<nav class="tabs" aria-label="頁面"><div><a href="${esc(t === HOME ? "#/" : (t ? href(t) : location.hash))}" aria-current="page">${esc(leftLabel)}</a></div><div>${right}</div></nav>`;
+  return `<nav class="tabs" aria-label="頁面"><div><a href="${esc(t ? href(t) : location.hash)}" aria-current="page">${esc(leftLabel)}</a></div><div>${right}</div></nav>`;
 }
+function setModified(p){ $("modified").textContent = p && p.updated ? `本頁面最後修訂於 ${p.updated}。` : ""; }
 
-function deadlineItem(){
-  const now = new Date(), fmt = d => d.toLocaleString("zh-TW",{timeZone:"Asia/Taipei",month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit",hour12:false});
-  const left = d => { const ms=d-now, h=Math.floor(ms/3600000), m=Math.floor(ms%3600000/60000); return h>=24?`還有 ${Math.floor(h/24)} 天 ${h%24} 小時`:`還有 ${h} 小時 ${m} 分`; };
-  if (now < DEADLINES.online) return `<li><strong>開放申請中</strong>：線上申請截止 ${fmt(DEADLINES.online)}（${left(DEADLINES.online)}），紙本收件截止 ${fmt(DEADLINES.paper)}。</li>`;
-  if (now < DEADLINES.paper) return `<li><strong>紙本今天 17:00 前要交</strong>：${left(DEADLINES.paper)}，交到行政大樓三樓原資中心。線上申請已截止。</li>`;
-  return `<li><strong>本學期申請已截止</strong>：紙本收件已於 ${fmt(DEADLINES.paper)} 截止，下學期期程請留意原資中心公告。</li>`;
+// 截止提醒：頂部公告與最新消息共用
+function fmt(d){ return d.toLocaleString("zh-TW",{timeZone:"Asia/Taipei",month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit",hour12:false}); }
+function left(d){ const ms=d-new Date(), h=Math.floor(ms/3600000), m=Math.floor(ms%3600000/60000); return h>=24?`還有 ${Math.floor(h/24)} 天 ${h%24} 小時`:`還有 ${h} 小時 ${m} 分`; }
+function deadline(){
+  const now = new Date();
+  if (now < DEADLINES.online) return {b:"原民會獎助學金開放申請中", t:`線上申請截止 ${fmt(DEADLINES.online)}（${left(DEADLINES.online)}），紙本收件截止 ${fmt(DEADLINES.paper)}。`};
+  if (now < DEADLINES.paper) return {b:"紙本收件今天 17:00 截止", t:`${left(DEADLINES.paper)}，交到行政大樓三樓原資中心。線上申請已截止。`};
+  return {b:"本學期申請已截止", t:`紙本收件已於 ${fmt(DEADLINES.paper)} 截止，下學期期程請留意原資中心公告。`};
 }
+function showNotice(){
+  let closed = false;
+  try { closed = sessionStorage.getItem("noticeClosed") === "1"; } catch (e) {}
+  const d = deadline();
+  $("noticeText").innerHTML = `<b>${esc(d.b)}</b>：${esc(d.t)}<a href="${href("申請期程")}">申請期程</a>`;
+  $("notice").hidden = closed;
+}
+$("noticeX").addEventListener("click", () => { $("notice").hidden = true; try { sessionStorage.setItem("noticeClosed","1"); } catch (e) {} });
 
 // ---------- 首頁 ----------
 const LOGTYPE = {ingest:"新增資料", query:"新增問答", lint:"健檢", feature:"新功能", publish:"發佈", fix:"修正", design:"改版"};
@@ -335,81 +421,117 @@ function sections(md){
   }
   return out;
 }
-const sec = (title, inner, more) => inner ? `<section class="sec"><h2>${title}</h2>${inner}${more ? `<p class="more">${more}</p>` : ""}</section>` : "";
-function recentUpdates(n){
-  if (!PAGES.log) return "";
-  const items = [...PAGES.log.body.matchAll(/^##\s*\[(\d{4}-\d{2}-\d{2})\]\s*(\w+)\s*[｜|]\s*(.+)$/gm)].reverse().slice(0, n);
-  return items.length ? `<ul class="updates">${items.map(m => `<li><span class="k">${esc(LOGTYPE[m[2]] || m[2])}</span><span>${esc(m[3])}</span></li>`).join("")}</ul>` : "";
+function logItems(n){
+  if (!PAGES.log) return [];
+  return [...PAGES.log.body.matchAll(/^##\s*\[(\d{4}-\d{2}-\d{2})\]\s*(\w+)\s*[｜|]\s*(.+)$/gm)].reverse().slice(0, n);
 }
 function showHome(){
-  document.body.classList.add("home");
+  layout("home");
   const s = PAGES[HOME] ? sections(PAGES[HOME].body) : {};
   const count = order.filter(t => t !== "index" && t !== "log").length;
-  const news = s["最新消息"] ? render(s["最新消息"]).replace("<ul>", "<ul>" + deadlineItem()) : `<ul>${deadlineItem()}</ul>`;
-  const left = sec("重點一覽", render((s._intro || "") + (s["重點一覽"] || "")), link(HOME, "閱讀總覽條目"))
-             + sec("從哪裡開始", s["從哪裡開始"] ? render(s["從哪裡開始"]) : "");
-  const right = sec("最新消息", news, link("申請期程", "完整申請期程"))
-              + sec("最近更新", recentUpdates(5), `<a href="#/log">完整操作紀錄</a>`)
-              + sec("原始文件", s["原始文件"] ? render(s["原始文件"]) : "");
-  art().innerHTML = tabs("首頁", HOME, "read") + `
-    <section class="welcome">
-      <div class="emblem" aria-hidden="true">原</div>
+  const d = deadline();
+  const news = (s["最新消息"] ? render(s["最新消息"]) : "<ul></ul>").replace("<ul>", `<ul><li><strong>${esc(d.b)}</strong>：${esc(d.t)}</li>`);
+  const topics = order.filter(t => PAGES[t].type === "concept" && t !== HOME);
+  const updates = logItems(3).map(m => `<a href="#/log">${esc(m[3])}</a>`).join("－");
+  $("art").innerHTML = tabs("首頁", HOME, "read") + `
+    <section class="banner">
+      <div class="globe" aria-hidden="true"><span>原</span></div>
       <div>
-        <h1>歡迎來到原寶</h1>
-        <p class="tag">政大原住民族學生的資訊百科</p>
-        <p class="intro">原寶用 LLM Wiki 的方式運作：把原資中心公告、學校規定等原始資料交給 AI 閱讀，整理成互相連結的條目，並持續更新、檢查前後矛盾。也可以直接在上方提問，AI 只會根據這些條目回答。<a href="${href("關於原寶")}">了解原寶怎麼運作</a></p>
-        <div class="try"><span>試試看問：</span>${EXAMPLES.map(x => `<button type="button" data-q="${esc(x)}">${esc(x)}</button>`).join("")}</div>
+        <h1>原寶</h1>
+        <p>政大原住民族學生的資訊百科</p>
+        <p>由 LLM 依 LLM Wiki 模式整理、持續維護</p>
       </div>
       <div class="stats">
         <p class="n">已有<b>${count}</b>篇條目</p>
-        <nav aria-label="快速連結"><a href="#/index">全部條目</a><a href="${href("申請期程")}">申請期程</a><a href="${href("應備文件")}">應備文件</a><a href="${href("待確認事項")}">待確認事項</a><a href="#/log">操作紀錄</a><a href="${href("原住民族學生資源中心")}">聯絡原資中心</a></nav>
+        <nav aria-label="快速連結"><a href="#/index">全部條目</a><a href="${href("申請期程")}">申請期程</a><a href="${href("應備文件")}">應備文件</a><a href="${href("待確認事項")}">待確認</a><a href="#/log">操作紀錄</a><a href="${href("關於原寶")}">關於</a></nav>
       </div>
     </section>
-    <div class="home-grid"><div class="col">${left}</div><div class="col">${right}</div></div>`;
-  document.title = "【原寶】原住民族學生資訊百科";
+    <div class="mp">
+      <div class="mp-l">
+        <section>
+          <h2>重點一覽</h2>
+          ${render((s._intro || "") + (s["重點一覽"] || ""))}
+          <p class="other"><b>其他主題條目：</b>${topics.map(t => link(t)).join("－")}</p>
+          <p class="foot">${link(HOME, "閱讀總覽")} · <a href="#/index">全部條目</a></p>
+        </section>
+        <section><h2>從哪裡開始</h2>${s["從哪裡開始"] ? render(s["從哪裡開始"]) : ""}</section>
+        <section><h2>原始文件</h2>${s["原始文件"] ? render(s["原始文件"]) : ""}</section>
+      </div>
+      <div class="mp-r">
+        <section>
+          <h2>最新消息</h2>
+          ${news}
+          <p class="line"><b>正在進行：</b>${link("申請期程", "115 學年度第 1 學期原民會獎助學金申請")}</p>
+          <p class="line"><b>最近更新：</b>${updates}</p>
+          <p class="foot">${link("申請期程", "完整申請期程")} · <a href="#/log">操作紀錄</a> · ${link("待確認事項")}</p>
+        </section>
+      </div>
+    </div>`;
+  setModified(PAGES[HOME]);
+  document.title = "原寶，原住民族學生資訊百科";
 }
 
 // ---------- 條目、原始碼 ----------
+function pageTitle(p, t){ const m = p.body.match(/^#\s+(.+)$/m); return m ? m[1].trim() : label(t); }
+function buildToc(){
+  const hs = [...document.querySelectorAll("#art .body h2")];
+  hs.forEach((h, i) => h.id = "s" + (i + 1));
+  $("toc").innerHTML = `<div class="side-h"><span>目錄</span></div><ul><li><a href="#" data-top>（序言）</a></li>${hs.map(h => `<li><a href="#" data-to="${h.id}">${esc(h.textContent)}</a></li>`).join("")}</ul>`;
+}
+$("toc").addEventListener("click", e => {
+  const a = e.target.closest("a"); if (!a) return;
+  e.preventDefault();
+  if (a.dataset.top !== undefined) window.scrollTo(0,0);
+  else document.getElementById(a.dataset.to)?.scrollIntoView();
+});
 function showPage(t){
+  layout("page");
   const p = PAGES[t];
-  let meta = "";
-  if (p.sources && p.sources.length) meta += `<p>依據來源：${p.sources.map(x => link(x)).join("、")}</p>`;
+  const cats = [];
+  if (p.sources && p.sources.length) cats.push(`<b>依據來源：</b>${p.sources.map(x => link(x)).join("｜")}`);
   const bl = [...(backlinks[t]||[])].filter(x => x !== t && x !== "index" && x !== "log");
-  if (bl.length) meta += `<p>連到這裡的條目：${bl.map(x => link(x)).join("、")}</p>`;
-  if (p.updated) meta += `<p>最後更新：${esc(p.updated)}</p>`;
-  art().innerHTML = tabs(TYPES[p.type] || "條目", t, "read") + render(p.body) + (meta ? `<div class="meta">${meta}</div>` : "");
+  if (bl.length) cats.push(`<b>連到這裡的條目：</b>${bl.map(x => link(x)).join("｜")}`);
+  $("art").innerHTML = `<h1 class="ptitle">${esc(pageTitle(p, t))}</h1>` + tabs(TYPES[p.type] || "條目", t, "read")
+    + `<p class="from">出自原寶，LLM Wiki 整理的原住民族學生百科</p><div class="body">${render(p.body)}</div>`
+    + (cats.length ? `<div class="cats">${cats.join("<br>")}</div>` : "");
+  buildToc();
+  setModified(p);
   document.title = `${label(t)} - ${SITE}`;
 }
 function showSource(t){
+  layout("plain");
   const p = PAGES[t];
-  art().innerHTML = tabs(TYPES[p.type] || "條目", t, "source")
-    + `<h1>${esc(label(t))} 的原始碼</h1><p class="lead">這是 LLM 依 AGENTS.md 規則撰寫的 Markdown 原檔：<code>wiki/${esc(p.path || "")}</code>。開頭 --- 之間是條目資料，[[ ]] 是條目之間的連結。</p><pre><code>${esc(p.raw || "")}</code></pre>`;
-  document.title = `${label(t)} 的原始碼 - ${SITE}`;
+  $("art").innerHTML = `<h1 class="ptitle">檢視「${esc(label(t))}」的原始碼</h1>` + tabs(TYPES[p.type] || "條目", t, "source")
+    + `<p class="src-note">這是 LLM 依 AGENTS.md 規則撰寫的 Markdown 原檔：<code>wiki/${esc(p.path || "")}</code>。開頭兩條 --- 之間是條目資料，[[ ]] 是條目之間的連結。</p><textarea class="src-box" readonly aria-label="原始碼">${esc(p.raw || "")}</textarea>`;
+  setModified(p);
+  document.title = `檢視「${label(t)}」的原始碼 - ${SITE}`;
 }
 
 // ---------- 提問 ----------
-function relatedHtml(hits, withSnippet){
+function resultsHtml(hits, title){
   if (!hits.length) return "";
-  return `<section class="related"><h2>相關條目</h2><ul>${hits.slice(0,5).map(x => `<li>${link(x.t)}${withSnippet ? `<p>${snippet(x)}</p>` : ""}</li>`).join("")}</ul></section>`;
+  return `<section class="results"><h2>${title}</h2><ul>${hits.slice(0,6).map(x => `<li>${link(x.t)}<p>${snippet(x)}</p><small>最後修訂於 ${esc(PAGES[x.t].updated || "")}</small></li>`).join("")}</ul></section>`;
 }
 function answerBox(kind, labelText, text, extra){
   return `<section class="answer ${kind}" id="ai" aria-live="polite"><p class="label">${labelText}</p><p class="text">${text}</p>${extra||""}</section>`;
 }
 function showSearch(q){
+  layout("plain");
   const {hits} = search(q);
   const seq = ++askSeq;
-  let h = tabs("提問", null) + `<h1 class="q-title">${esc(q)}</h1>`;
+  let h = `<h1 class="ptitle">提問結果</h1>` + tabs("提問", null) + `<p class="ask-line">你問：<b>${esc(q)}</b></p>`;
   if (ASK_API){
-    h += `<section class="answer" id="ai" aria-live="polite"><p class="wait">正在讀 wiki、整理回答…</p></section><div id="rel">${relatedHtml(hits, false)}</div>`;
+    h += `<section class="answer" id="ai" aria-live="polite"><p class="wait">正在讀原寶的條目、整理回答…</p></section><div id="rel">${resultsHtml(hits, "相關條目")}</div>`;
   } else {
-    h += hits.length ? relatedHtml(hits, true) : answerBox("nodata", "目前沒有資料", `原寶還沒有這方面的內容。可以換個說法再問一次，或直接聯絡${CONTACT}。`, START);
+    h += hits.length ? resultsHtml(hits, "相關條目") : answerBox("nodata", "目前沒有資料", `原寶還沒有這方面的內容。可以換個說法再問一次，或直接聯絡${CONTACT}。`, START);
   }
-  art().innerHTML = h;
-  document.title = `${q} - ${SITE}`;
+  $("art").innerHTML = h;
+  setModified(null);
+  document.title = `${q} - 提問結果 - ${SITE}`;
   if (ASK_API) askAI(q, seq, hits);
 }
 async function askAI(q, seq, hits){
-  const box = document.getElementById("ai"), rel = document.getElementById("rel");
+  const box = $("ai"), rel = $("rel");
   const current = () => seq === askSeq && document.body.contains(box);
   try {
     const r = await fetch(ASK_API, {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({question: q})});
@@ -418,7 +540,6 @@ async function askAI(q, seq, hits){
     if (d.error === "question_too_long") throw new Error("問題太長了，請精簡到 200 字以內。");
     if (!r.ok || d.error) throw new Error("");
     const status = d.status || (d.found ? "answered" : "no_data");
-    const note = `<p class="note">由 AI 根據原寶的條目整理，可能有誤，請以原資中心與原民會正式公告為準。</p>`;
     if (status === "off_topic"){
       box.outerHTML = answerBox("offtopic", "不在服務範圍", esc(d.answer || ""));
       rel.innerHTML = "";
@@ -427,8 +548,7 @@ async function askAI(q, seq, hits){
     const srcs = (d.sources || []).filter(t => PAGES[t]);
     const text = esc(d.answer || "").replace(/\n/g,"<br>");
     if (status === "answered"){
-      box.outerHTML = answerBox("", "回答", text, (srcs.length ? `<p class="src">依據：${srcs.map(x => link(x)).join("、")}</p>` : "") + note);
-      if (srcs.length) rel.innerHTML = relatedHtml(hits.filter(h => !srcs.includes(h.t)), false);
+      box.outerHTML = answerBox("", "回答", text, (srcs.length ? `<p class="src">依據：${srcs.map(x => link(x)).join("、")}</p>` : "") + `<p class="note">由 AI 根據原寶的條目整理，可能有誤，請以原資中心與原民會正式公告為準。</p>`);
     } else {
       box.outerHTML = answerBox("nodata", "目前沒有資料", text);
       if (!hits.length) rel.innerHTML = START;
@@ -444,58 +564,64 @@ async function askAI(q, seq, hits){
 
 // ---------- 路由 ----------
 function show(){
-  document.body.classList.remove("home");
   const h = location.hash;
   const sm = h.match(/^#search=(.*)$/), src = h.match(/^#source=(.*)$/);
-  document.getElementById("topq").value = sm ? decodeURIComponent(sm[1]) : "";
+  $("topq").value = sm ? decodeURIComponent(sm[1]) : "";
   if (sm) showSearch(decodeURIComponent(sm[1]));
   else if (src && PAGES[decodeURIComponent(src[1])]) showSource(decodeURIComponent(src[1]));
   else {
     const t = decodeURIComponent(h.replace(/^#\/?/,""));
     if (!t || t === HOME || !PAGES[t]) showHome(); else showPage(t);
   }
+  showNotice();
+  closeMenus();
   window.scrollTo(0,0);
 }
-document.addEventListener("submit", e => {
-  if (e.target.id !== "topform") return;
-  e.preventDefault();
-  const v = document.getElementById("topq").value.trim();
-  if (v) go(v);
-});
-document.addEventListener("click", e => {
-  const b = e.target.closest(".try button"); if (b) go(b.dataset.q);
-});
+$("topform").addEventListener("submit", e => { e.preventDefault(); const v = $("topq").value.trim(); if (v) go(v); });
 
-// 外觀：文字大小、寬度、顏色，選擇會記在瀏覽器
+// ---------- 選單與外觀 ----------
+function toggle(btn, panel, v){ panel.hidden = !v; btn.setAttribute("aria-expanded", String(v)); }
+function closeMenus(){ toggle($("menuBtn"), $("menuPanel"), false); toggle($("appearBtn"), $("appearDrop"), false); }
+$("menuBtn").addEventListener("click", e => { e.stopPropagation(); const v = $("menuPanel").hidden; closeMenus(); toggle($("menuBtn"), $("menuPanel"), v); });
+$("appearBtn").addEventListener("click", e => { e.stopPropagation(); const v = $("appearDrop").hidden; closeMenus(); toggle($("appearBtn"), $("appearDrop"), v); });
+document.addEventListener("click", e => { if (!e.target.closest(".dropdown")) closeMenus(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeMenus(); });
+
 (function(){
-  const root = document.documentElement, btn = document.getElementById("appearBtn"), panel = document.getElementById("appearPanel");
-  const KEYS = {font:"standard", width:"standard", theme:"auto"};
+  const root = document.documentElement;
+  const DEF = {font:"standard", width:"standard", theme:"auto", pinned:true};
   let a = {};
   try { a = JSON.parse(localStorage.getItem("appearance") || "{}"); } catch (e) {}
-  const cur = k => a[k] || KEYS[k];
-  const apply = () => {
-    for (const k of Object.keys(KEYS)){
-      const v = cur(k);
-      if (v === KEYS[k]) delete root.dataset[k]; else root.dataset[k] = v;
-      const r = panel.querySelector(`input[name="${k}"][value="${v}"]`); if (r) r.checked = true;
+  const get = k => (k in a ? a[k] : DEF[k]);
+  const save = () => { try { localStorage.setItem("appearance", JSON.stringify(a)); } catch (e) {} };
+  const form = $("appearTpl").content.firstElementChild.cloneNode(true);
+  const wideScreen = matchMedia("(min-width: 1180px)");
+  function applyLook(){
+    for (const k of ["font","width","theme"]){
+      const v = get(k);
+      if (v === DEF[k]) delete root.dataset[k]; else root.dataset[k] = v;
+      const r = form.querySelector(`input[name="${k}"][value="${v}"]`); if (r) r.checked = true;
     }
-  };
-  panel.addEventListener("change", e => {
-    a[e.target.name] = e.target.value;
-    try { localStorage.setItem("appearance", JSON.stringify(a)); } catch (err) {}
-    apply();
-  });
-  panel.addEventListener("submit", e => e.preventDefault());
-  const open = v => { panel.hidden = !v; btn.setAttribute("aria-expanded", String(v)); };
-  btn.addEventListener("click", () => open(panel.hidden));
-  document.addEventListener("click", e => { if (!panel.hidden && !e.target.closest(".appear")) open(false); });
-  document.addEventListener("keydown", e => { if (e.key === "Escape" && !panel.hidden){ open(false); btn.focus(); } });
-  apply();
+  }
+  function place(){
+    const pinned = get("pinned") && wideScreen.matches;
+    document.body.classList.toggle("has-tools", pinned);
+    $("appearBtn").hidden = pinned;
+    const pin = form.querySelector("#pinBtn");
+    pin.textContent = pinned ? "隱藏" : "固定在側欄";
+    pin.hidden = !wideScreen.matches;
+    (pinned ? $("tools") : $("appearDrop")).appendChild(form);
+  }
+  form.addEventListener("change", e => { a[e.target.name] = e.target.value; save(); applyLook(); });
+  form.addEventListener("submit", e => e.preventDefault());
+  form.querySelector("#pinBtn").addEventListener("click", e => { e.stopPropagation(); a.pinned = !(get("pinned") && wideScreen.matches); save(); closeMenus(); place(); });
+  wideScreen.addEventListener("change", place);
+  applyLook(); place();
 })();
 
 window.addEventListener("hashchange", show);
 load().then(show).catch(() => {
-  art().innerHTML = `<h1>讀不到原寶的條目</h1><p>這個網頁要透過網站伺服器開啟，直接雙擊 index.html 會讀不到 Markdown 檔。部署到網路上，或在資料夾裡執行 <code>python -m http.server</code> 再開 http://localhost:8000 即可。</p>`;
+  $("art").innerHTML = `<h1 class="ptitle">讀不到原寶的條目</h1><p>這個網頁要透過網站伺服器開啟，直接雙擊 index.html 會讀不到 Markdown 檔。部署到網路上，或在資料夾裡執行 <code>python -m http.server</code> 再開 http://localhost:8000 即可。</p>`;
 });
 </script>
 </body>
