@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>原民會大專獎助學金 LLM Wiki｜政大</title>
+<title>【原寶】原住民族學生資訊百科</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;900&display=swap" rel="stylesheet">
@@ -21,7 +21,7 @@
   --bg:#ffffff; --ink:#000000; --muted:#555555; --line:#d4d4d4; --soft:#f3f3f3;
   --sans:"Noto Sans TC","PingFang TC","Microsoft JhengHei","Heiti TC",system-ui,sans-serif;
   --serif:"Noto Serif TC","Songti TC","PMingLiU",serif;
-  --col:720px; --wide:1120px; --scale:1;
+  --col:720px; --wide:1160px; --scale:1;
   color-scheme:light;
   box-sizing:border-box;
   padding-bottom:env(safe-area-inset-bottom,0px);
@@ -34,23 +34,28 @@
 :root[data-width="wide"]{--col:960px;--wide:1400px}
 :root[data-theme="dark"]{ --bg:#000000; --ink:#ffffff; --muted:#a8a8a8; --line:#3a3a3a; --soft:#141414; color-scheme:dark; }
 *,*::before,*::after{box-sizing:inherit}
-html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 72px)}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 90px)}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:calc(17px * var(--scale));line-height:1.85}
 a{color:var(--ink);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
 a:hover{text-decoration-thickness:2px}
 :focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:2px}
 button,input{font:inherit;color:inherit}
 
-/* 頂部橫條 */
+/* 頂部：標誌、搜尋、外觀 */
 header.top{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
-.top-inner{max-width:var(--wide);margin:0 auto;padding:10px 24px;display:flex;align-items:center;gap:20px}
-.brand{font-family:var(--serif);font-weight:900;font-size:calc(17px * var(--scale));text-decoration:none;white-space:nowrap}
-.top-search{flex:1;display:flex;justify-content:center}
-.top-search form{width:100%;max-width:420px;display:flex}
-.top-search input{width:100%;padding:6px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);font-size:calc(15px * var(--scale))}
-.top-search input:focus{border-color:var(--ink);outline:none}
-.appear{position:relative;margin-left:auto}
-.appear-btn{background:none;border:1px solid var(--line);border-radius:8px;padding:4px 12px;font-size:calc(14px * var(--scale));cursor:pointer;white-space:nowrap}
+.top-inner{max-width:var(--wide);margin:0 auto;padding:12px 24px;display:flex;align-items:center;gap:28px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex:none}
+.mark{display:grid;place-items:center;width:40px;height:40px;background:var(--ink);color:var(--bg);font-family:var(--serif);font-weight:900;font-size:calc(24px * var(--scale));border-radius:6px;line-height:1}
+.bt{display:flex;flex-direction:column;line-height:1.25}
+.bt b{font-family:var(--serif);font-weight:900;font-size:calc(20px * var(--scale));letter-spacing:.04em}
+.bt small{font-size:calc(12px * var(--scale));color:var(--muted)}
+.top-search{flex:1;max-width:640px}
+.top-search form{display:flex}
+.top-search input{flex:1;min-width:0;height:46px;padding:0 16px;border:1.5px solid var(--ink);border-right:0;border-radius:10px 0 0 10px;background:var(--bg);font-size:calc(17px * var(--scale))}
+.top-search input:focus{outline:none;box-shadow:inset 0 0 0 1px var(--ink)}
+.top-search button{padding:0 22px;border:1.5px solid var(--ink);border-radius:0 10px 10px 0;background:var(--ink);color:var(--bg);font-weight:700;font-size:calc(16px * var(--scale));cursor:pointer}
+.appear{position:relative;margin-left:auto;flex:none}
+.appear-btn{background:none;border:1px solid var(--line);border-radius:8px;padding:5px 12px;font-size:calc(14px * var(--scale));cursor:pointer;white-space:nowrap}
 .appear-btn:hover,.appear-btn[aria-expanded="true"]{border-color:var(--ink)}
 .appear-panel{position:absolute;right:0;top:calc(100% + 8px);width:230px;background:var(--bg);border:1px solid var(--ink);border-radius:10px;padding:6px 18px 12px;z-index:40;line-height:1.5}
 .appear-panel[hidden]{display:none}
@@ -59,53 +64,55 @@ header.top{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1
 .appear-panel legend{font-weight:700;font-size:calc(14px * var(--scale));padding:0;margin-bottom:4px;float:left;width:100%}
 .appear-panel label{display:flex;align-items:center;gap:8px;padding:3px 0;font-size:calc(15px * var(--scale));cursor:pointer;clear:both}
 .appear-panel input{accent-color:var(--ink);width:16px;height:16px;margin:0}
-body.home .top-search{visibility:hidden}
 
-main{max-width:var(--col);margin:0 auto;padding:40px 24px 80px}
-
-/* 首頁 */
+main{max-width:var(--col);margin:0 auto;padding:16px 24px 80px}
 body.home main{max-width:var(--wide)}
-.portal{border:1px solid var(--ink);border-radius:12px;padding:32px 36px 28px;margin:0 0 28px}
-.portal-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin:0 0 24px}
-.portal h1{font-family:var(--serif);font-weight:900;font-size:calc(clamp(30px,5vw,44px) * var(--scale));line-height:1.2;margin:0 0 6px;letter-spacing:.02em}
-.portal .sub{color:var(--muted);margin:0;font-size:calc(16px * var(--scale))}
-.stats{text-align:right;font-size:calc(15px * var(--scale));line-height:1.9}
-.stats b{font-size:calc(22px * var(--scale));font-weight:700}
-.stats nav a{margin-left:14px}
-.ask{display:flex;gap:10px}
-.ask input{flex:1;min-width:0;height:64px;padding:0 20px;border:2px solid var(--ink);border-radius:12px;background:var(--bg);font-size:calc(20px * var(--scale))}
-.ask input:focus{outline:none;box-shadow:0 0 0 4px var(--line)}
-.ask button{padding:0 30px;border:0;border-radius:12px;background:var(--ink);color:var(--bg);font-weight:700;font-size:calc(18px * var(--scale));cursor:pointer}
-.examples{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0}
-.examples span{font-size:calc(14px * var(--scale));color:var(--muted);align-self:center;margin-right:2px}
-.examples button{background:none;border:1px solid var(--line);border-radius:999px;padding:4px 14px;font-size:calc(14px * var(--scale));color:var(--muted);cursor:pointer}
-.examples button:hover{border-color:var(--ink);color:var(--ink)}
-.home-grid{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:24px;align-items:start}
-.home-grid .col{display:grid;gap:24px}
-.box{border:1px solid var(--line);border-radius:12px;padding:22px 24px}
-.box h2{font-family:var(--serif);font-weight:900;font-size:calc(21px * var(--scale));margin:0 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
-.box p:first-of-type{margin-top:0}
-.box ul{padding-left:1.2em;margin:0}
-.box li{margin:6px 0}
-.box .tablewrap{margin:12px 0 0}
-.box strong{font-weight:700}
-.status b{display:block;font-size:calc(18px * var(--scale));margin-bottom:2px}
-.status span{color:var(--muted);font-size:calc(15px * var(--scale));line-height:1.7}
+
+/* 分頁標籤（仿 Wikipedia 的 首頁｜閱讀 檢視原始碼 檢視歷史） */
+.tabs{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;border-bottom:1px solid var(--line);margin:0 0 28px;font-size:calc(15px * var(--scale))}
+.tabs div{display:flex;gap:18px}
+.tabs a{text-decoration:none;padding:8px 2px 7px;border-bottom:2px solid transparent;margin-bottom:-1px;color:var(--muted);white-space:nowrap}
+.tabs a:hover{color:var(--ink)}
+.tabs a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--ink);font-weight:700}
+
+/* 首頁歡迎橫幅 */
+.welcome{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:28px;align-items:center;background:var(--soft);border-bottom:2px solid var(--ink);padding:28px 32px;margin:0 0 28px}
+.emblem{display:grid;place-items:center;width:104px;height:104px;background:var(--ink);color:var(--bg);font-family:var(--serif);font-weight:900;font-size:calc(62px * var(--scale));border-radius:12px;line-height:1}
+.welcome h1{font-family:var(--serif);font-weight:900;font-size:calc(clamp(32px,5vw,46px) * var(--scale));line-height:1.15;margin:0 0 6px;letter-spacing:.04em}
+.welcome .tag{font-size:calc(17px * var(--scale));margin:0 0 6px}
+.welcome .intro{font-size:calc(14px * var(--scale));color:var(--muted);margin:0;line-height:1.75;max-width:52ch}
+.welcome .try{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:12px 0 0;font-size:calc(14px * var(--scale));color:var(--muted)}
+.welcome .try button{background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:3px 13px;font-size:calc(14px * var(--scale));color:var(--ink);cursor:pointer}
+.welcome .try button:hover{border-color:var(--ink)}
+.stats{text-align:center;min-width:220px}
+.stats .n{font-size:calc(16px * var(--scale));margin:0 0 6px}
+.stats .n b{font-size:calc(26px * var(--scale));font-weight:700;margin:0 4px}
+.stats nav{display:grid;grid-template-columns:repeat(3,auto);gap:4px 18px;justify-content:center;font-size:calc(15px * var(--scale))}
+
+/* 首頁兩欄 */
+.home-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:start}
+.home-grid .col{display:grid;gap:28px}
+.sec{border:1px solid var(--line);padding:20px 24px}
+.sec h2{font-family:var(--serif);font-weight:900;font-size:calc(21px * var(--scale));letter-spacing:.12em;margin:0 0 14px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.sec p:first-of-type{margin-top:0}
+.sec ul{padding-left:1.2em;margin:0}
+.sec li{margin:8px 0}
+.sec .tablewrap{margin:12px 0 0}
+.sec strong{font-weight:700}
+.sec .more{margin:12px 0 0;font-size:calc(14px * var(--scale));text-align:right}
 .updates{list-style:none;padding:0!important}
 .updates li{display:flex;gap:12px;font-size:calc(15px * var(--scale));line-height:1.6;padding:6px 0;border-bottom:1px solid var(--line);margin:0!important}
 .updates li:last-child{border-bottom:0}
 .updates .k{flex:none;font-weight:700;min-width:4.5em}
-.box .more{margin:10px 0 0;font-size:calc(14px * var(--scale))}
 
 /* 條目內文 */
-.crumb{font-size:calc(14px * var(--scale));color:var(--muted);margin:0 0 4px}
 article h1{font-family:var(--serif);font-weight:900;font-size:calc(clamp(28px,5vw,38px) * var(--scale));line-height:1.3;margin:0 0 24px}
 article h2{font-family:var(--serif);font-weight:600;font-size:calc(23px * var(--scale));line-height:1.4;margin:40px 0 12px}
 article ul,article ol{padding-left:1.4em}
 article li{margin:4px 0}
 article strong{font-weight:700}
 article code{font-size:.88em;background:var(--soft);padding:1px 6px;border-radius:4px;word-break:break-all}
-article pre{background:var(--soft);padding:14px;border-radius:8px;overflow-x:auto;font-size:calc(14px * var(--scale));line-height:1.6}
+article pre{background:var(--soft);padding:16px;border-radius:8px;overflow-x:auto;font-size:calc(14px * var(--scale));line-height:1.7;white-space:pre-wrap;word-break:break-word}
 article pre code{background:none;padding:0}
 article img{max-width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:6px;margin:16px 0}
 .tablewrap{overflow-x:auto;margin:16px 0}
@@ -115,6 +122,7 @@ th{font-weight:700;border-bottom:2px solid var(--ink)}
 .meta{margin-top:56px;padding-top:16px;border-top:1px solid var(--line);font-size:calc(15px * var(--scale));color:var(--muted);line-height:1.8}
 .meta p{margin:0 0 6px}
 .meta a{color:var(--ink)}
+.lead{color:var(--muted);font-size:calc(15px * var(--scale))}
 
 /* 提問結果 */
 .q-title{font-family:var(--serif);font-weight:900;font-size:calc(clamp(24px,4.5vw,32px) * var(--scale));line-height:1.35;margin:0 0 24px}
@@ -134,25 +142,30 @@ th{font-weight:700;border-bottom:2px solid var(--ink)}
 .related mark{background:none;color:var(--ink);font-weight:700}
 
 footer{max-width:var(--col);margin:0 auto;padding:0 24px 48px;font-size:calc(13.5px * var(--scale));color:var(--muted);line-height:1.8}
+body.home footer{max-width:var(--wide)}
 footer .in{border-top:1px solid var(--line);padding-top:20px}
 footer nav{margin-bottom:6px}
 footer a{color:var(--muted)}
 
-@media (max-width:860px){ .home-grid{grid-template-columns:minmax(0,1fr)} }
+@media (max-width:900px){
+  .home-grid{grid-template-columns:minmax(0,1fr)}
+  .welcome{grid-template-columns:auto minmax(0,1fr)}
+  .stats{grid-column:1 / -1;text-align:left;min-width:0}
+  .stats nav{justify-content:start}
+}
 @media (max-width:640px){
-  .top-inner{flex-wrap:wrap;gap:8px 12px;padding:10px 16px}
-  .top-search{order:3;flex-basis:100%}
-  .top-search form{max-width:none}
-  body.home .top-search{display:none}
-  main{padding:20px 14px 64px}
+  .top-inner{flex-wrap:wrap;gap:10px 12px;padding:10px 14px}
+  .top-search{order:3;flex-basis:100%;max-width:none}
+  .top-search input{height:44px;font-size:calc(16px * var(--scale))}
+  .mark{width:34px;height:34px;font-size:calc(20px * var(--scale))}
+  .bt b{font-size:calc(18px * var(--scale))}
+  main{padding:12px 14px 64px}
   footer{padding:0 14px 40px}
-  .portal{padding:22px 18px 20px}
-  .portal-head{margin-bottom:18px}
-  .stats{text-align:left}
-  .stats nav a{margin:0 14px 0 0}
-  .ask input{height:56px;font-size:calc(17px * var(--scale));padding:0 14px}
-  .ask button{padding:0 18px;font-size:calc(16px * var(--scale))}
-  .box{padding:18px}
+  .tabs{font-size:calc(14px * var(--scale))}
+  .tabs div{gap:12px}
+  .welcome{grid-template-columns:minmax(0,1fr);padding:20px 18px;gap:16px}
+  .emblem{display:none}
+  .sec{padding:16px 18px}
   body{font-size:calc(16.5px * var(--scale))}
 }
 </style>
@@ -160,8 +173,8 @@ footer a{color:var(--muted)}
 <body>
 <header class="top">
   <div class="top-inner">
-    <a class="brand" href="#/">原民會獎助學金 Wiki</a>
-    <div class="top-search"><form id="topform" role="search" autocomplete="off"><input id="topq" type="search" placeholder="問獎助學金或校園生活的問題" aria-label="提問" autocomplete="off" spellcheck="false"></form></div>
+    <a class="brand" href="#/" aria-label="原寶首頁"><span class="mark" aria-hidden="true">原</span><span class="bt"><b>【原寶】</b><small>LLM Wiki 整理的原住民族學生百科</small></span></a>
+    <div class="top-search"><form id="topform" role="search" autocomplete="off"><input id="topq" type="search" placeholder="在原寶提問，例如：要交哪些文件" aria-label="提問" autocomplete="off" spellcheck="false"><button type="submit">提問</button></form></div>
     <div class="appear">
       <button class="appear-btn" id="appearBtn" type="button" aria-expanded="false" aria-controls="appearPanel">外觀</button>
       <form class="appear-panel" id="appearPanel" hidden>
@@ -185,30 +198,32 @@ footer a{color:var(--muted)}
 </header>
 <main><article id="art"></article></main>
 <footer><div class="in">
-  <nav><a href="#/index">全部條目</a>　<a href="#/log">操作紀錄</a></nav>
-  本站依 Karpathy 的 LLM Wiki 模式整理：原始資料保存在 raw/，條目由 LLM 依 AGENTS.md 規則撰寫與交叉連結。內容僅供參考，請以原資中心與原民會正式公告為準。
+  <nav><a href="#/%E9%97%9C%E6%96%BC%E5%8E%9F%E5%AF%B6">關於原寶</a>　<a href="#/index">全部條目</a>　<a href="#/log">操作紀錄</a></nav>
+  【原寶】由 LLM 依 Karpathy 的 LLM Wiki 模式整理：原始資料保存在 raw/，條目由 LLM 依 AGENTS.md 規則撰寫、交叉連結並持續維護。內容僅供參考，請以原資中心與原民會正式公告為準。
 </div></footer>
 <script src="assets/marked.min.js"></script>
 <script>
 // ===== 設定 =====
 // AI 問答的網址。部署在 Vercel 時維持 "/api/ask" 即可。改成 "" = 關閉 AI，只用關鍵字搜尋
 const ASK_API = "/api/ask";
-// 首頁的範例問題
+// 首頁「試試看問」的範例問題
 const EXAMPLES = ["成績 65 分可以申請嗎", "要交哪些文件", "什麼時候截止"];
-// 首頁的截止提醒
+// 首頁「最新消息」第一則的截止倒數
 const DEADLINES = {online:new Date("2026-10-14T23:59:00+08:00"), paper:new Date("2026-10-15T17:00:00+08:00")};
 // ================
 
+const SITE = "原寶";
 const PAGES = {};
 let order = [];
 const backlinks = {};
 const HOME = "總覽";
-const TYPES = {concept:"主題", entity:"單位", query:"問答與檢查", source:"來源", meta:"紀錄"};
+const TYPES = {concept:"主題", entity:"單位", query:"問答與檢查", source:"來源", meta:"紀錄", about:"關於"};
 const LABEL = {index:"全部條目", log:"操作紀錄"};
 const label = t => LABEL[t] || t;
 
 function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
-const link = t => `<a href="#/${encodeURIComponent(t)}">${esc(label(t).replace(/^來源-/,"來源："))}</a>`;
+const href = t => `#/${encodeURIComponent(t)}`;
+const link = (t, text) => `<a href="${href(t)}">${esc(text || label(t).replace(/^來源-/,"來源："))}</a>`;
 function wikify(md){ return md.replace(/\[\[(.+?)\]\]/g,(m,t)=> PAGES[t] ? link(t) : esc(t)); }
 function render(md){
   const src = wikify(md);
@@ -230,7 +245,7 @@ function parsePage(txt){
 async function load(){
   const list = await (await fetch("wiki/pages.json",{cache:"no-cache"})).json();
   const texts = await Promise.all(list.map(p => fetch("wiki/"+encodeURI(p),{cache:"no-cache"}).then(r => r.ok ? r.text() : "")));
-  texts.forEach(txt => { const p = parsePage(txt); if (p && p.title){ PAGES[p.title] = p; order.push(p.title); } });
+  texts.forEach((txt, i) => { const p = parsePage(txt); if (p && p.title){ p.path = list[i]; p.raw = txt; PAGES[p.title] = p; order.push(p.title); } });
   for (const t of order){ for (const m of PAGES[t].body.matchAll(/\[\[(.+?)\]\]/g)){ (backlinks[m[1]] ||= new Set()).add(t); } }
 }
 
@@ -287,21 +302,30 @@ function snippet(h){
   return esc(best).replace(re, m => `<mark>${m}</mark>`);
 }
 
-function statusBlock(){
-  const now = new Date(), fmt = d => d.toLocaleString("zh-TW",{timeZone:"Asia/Taipei",month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit",hour12:false});
-  const left = d => { const ms=d-now, h=Math.floor(ms/3600000), m=Math.floor(ms%3600000/60000); return h>=24?`還有 ${Math.floor(h/24)} 天 ${h%24} 小時`:`還有 ${h} 小時 ${m} 分`; };
-  if (now < DEADLINES.online) return `<div class="status"><b>開放申請中</b><span>線上申請截止 ${fmt(DEADLINES.online)}（${left(DEADLINES.online)}），紙本收件截止 ${fmt(DEADLINES.paper)}。</span></div>`;
-  if (now < DEADLINES.paper) return `<div class="status"><b>紙本今天 17:00 前要交</b><span>線上申請已截止。紙本收件截止 ${fmt(DEADLINES.paper)}（${left(DEADLINES.paper)}），交到行政大樓三樓原資中心。</span></div>`;
-  return `<div class="status"><b>本學期申請已截止</b><span>紙本收件已於 ${fmt(DEADLINES.paper)} 截止，下學期期程請留意原資中心公告。</span></div>`;
-}
-
-// ---------- 畫面 ----------
+// ---------- 共用 ----------
 const art = () => document.getElementById("art");
 const go = q => { location.hash = "#search=" + encodeURIComponent(q); };
-const START = `<p>可以先看看<a href="#/">首頁的重點一覽</a>，或<a href="#/${encodeURIComponent("我適合申請哪一種")}">我適合申請哪一種</a>。</p>`;
+const START = `<p>可以先看看<a href="#/">首頁的重點一覽</a>，或<a href="${href("我適合申請哪一種")}">我適合申請哪一種</a>。</p>`;
 const CONTACT = "原資中心：電話 (02) 2939-3091 分機 67030、信箱 isrc@nccu.edu.tw";
 let askSeq = 0;
 
+// 分頁標籤：左邊是頁面種類，右邊是 閱讀／原始碼／歷史
+function tabs(leftLabel, t, active){
+  const right = t && PAGES[t]
+    ? `<a href="${t === HOME ? "#/" : href(t)}" ${active === "read" ? 'aria-current="page"' : ""}>閱讀</a><a href="#source=${encodeURIComponent(t)}" ${active === "source" ? 'aria-current="page"' : ""}>原始碼</a><a href="#/log">歷史</a>`
+    : "";
+  return `<nav class="tabs" aria-label="頁面"><div><a href="${esc(t === HOME ? "#/" : (t ? href(t) : location.hash))}" aria-current="page">${esc(leftLabel)}</a></div><div>${right}</div></nav>`;
+}
+
+function deadlineItem(){
+  const now = new Date(), fmt = d => d.toLocaleString("zh-TW",{timeZone:"Asia/Taipei",month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit",hour12:false});
+  const left = d => { const ms=d-now, h=Math.floor(ms/3600000), m=Math.floor(ms%3600000/60000); return h>=24?`還有 ${Math.floor(h/24)} 天 ${h%24} 小時`:`還有 ${h} 小時 ${m} 分`; };
+  if (now < DEADLINES.online) return `<li><strong>開放申請中</strong>：線上申請截止 ${fmt(DEADLINES.online)}（${left(DEADLINES.online)}），紙本收件截止 ${fmt(DEADLINES.paper)}。</li>`;
+  if (now < DEADLINES.paper) return `<li><strong>紙本今天 17:00 前要交</strong>：${left(DEADLINES.paper)}，交到行政大樓三樓原資中心。線上申請已截止。</li>`;
+  return `<li><strong>本學期申請已截止</strong>：紙本收件已於 ${fmt(DEADLINES.paper)} 截止，下學期期程請留意原資中心公告。</li>`;
+}
+
+// ---------- 首頁 ----------
 const LOGTYPE = {ingest:"新增資料", query:"新增問答", lint:"健檢", feature:"新功能", publish:"發佈", fix:"修正", design:"改版"};
 function sections(md){
   const out = {}; let cur = "_intro";
@@ -311,42 +335,59 @@ function sections(md){
   }
   return out;
 }
-function box(title, inner){ return inner ? `<section class="box"><h2>${title}</h2>${inner}</section>` : ""; }
+const sec = (title, inner, more) => inner ? `<section class="sec"><h2>${title}</h2>${inner}${more ? `<p class="more">${more}</p>` : ""}</section>` : "";
 function recentUpdates(n){
   if (!PAGES.log) return "";
   const items = [...PAGES.log.body.matchAll(/^##\s*\[(\d{4}-\d{2}-\d{2})\]\s*(\w+)\s*[｜|]\s*(.+)$/gm)].reverse().slice(0, n);
-  if (!items.length) return "";
-  return `<ul class="updates">${items.map(m => `<li><span class="k">${esc(LOGTYPE[m[2]] || m[2])}</span><span>${esc(m[3])}</span></li>`).join("")}</ul><p class="more"><a href="#/log">完整操作紀錄</a></p>`;
+  return items.length ? `<ul class="updates">${items.map(m => `<li><span class="k">${esc(LOGTYPE[m[2]] || m[2])}</span><span>${esc(m[3])}</span></li>`).join("")}</ul>` : "";
 }
 function showHome(){
   document.body.classList.add("home");
-  const sec = PAGES[HOME] ? sections(PAGES[HOME].body) : {};
+  const s = PAGES[HOME] ? sections(PAGES[HOME].body) : {};
   const count = order.filter(t => t !== "index" && t !== "log").length;
-  const left = box("重點一覽", render((sec._intro || "") + (sec["重點一覽"] || ""))) + box("從哪裡開始", sec["從哪裡開始"] ? render(sec["從哪裡開始"]) : "");
-  const right = box("截止提醒", statusBlock()) + box("最近更新", recentUpdates(5)) + box("原始文件", sec["原始文件"] ? render(sec["原始文件"]) : "");
-  art().innerHTML = `<section class="portal">
-      <div class="portal-head">
-        <div><h1>原民會大專獎助學金</h1><p class="sub">政大 115 學年度第 1 學期，有問題直接問</p></div>
-        <div class="stats">已有 <b>${count}</b> 篇條目<nav><a href="#/index">全部條目</a><a href="#/${encodeURIComponent("待確認事項")}">待確認事項</a><a href="#/log">操作紀錄</a></nav></div>
+  const news = s["最新消息"] ? render(s["最新消息"]).replace("<ul>", "<ul>" + deadlineItem()) : `<ul>${deadlineItem()}</ul>`;
+  const left = sec("重點一覽", render((s._intro || "") + (s["重點一覽"] || "")), link(HOME, "閱讀總覽條目"))
+             + sec("從哪裡開始", s["從哪裡開始"] ? render(s["從哪裡開始"]) : "");
+  const right = sec("最新消息", news, link("申請期程", "完整申請期程"))
+              + sec("最近更新", recentUpdates(5), `<a href="#/log">完整操作紀錄</a>`)
+              + sec("原始文件", s["原始文件"] ? render(s["原始文件"]) : "");
+  art().innerHTML = tabs("首頁", HOME, "read") + `
+    <section class="welcome">
+      <div class="emblem" aria-hidden="true">原</div>
+      <div>
+        <h1>歡迎來到原寶</h1>
+        <p class="tag">政大原住民族學生的資訊百科</p>
+        <p class="intro">原寶用 LLM Wiki 的方式運作：把原資中心公告、學校規定等原始資料交給 AI 閱讀，整理成互相連結的條目，並持續更新、檢查前後矛盾。也可以直接在上方提問，AI 只會根據這些條目回答。<a href="${href("關於原寶")}">了解原寶怎麼運作</a></p>
+        <div class="try"><span>試試看問：</span>${EXAMPLES.map(x => `<button type="button" data-q="${esc(x)}">${esc(x)}</button>`).join("")}</div>
       </div>
-      <form class="ask" id="homeform" role="search" autocomplete="off"><input id="homeq" type="search" placeholder="輸入你的問題" aria-label="提問" autocomplete="off" spellcheck="false"><button type="submit">提問</button></form>
-      <div class="examples"><span>試試看：</span>${EXAMPLES.map(x => `<button type="button" data-q="${esc(x)}">${esc(x)}</button>`).join("")}</div>
+      <div class="stats">
+        <p class="n">已有<b>${count}</b>篇條目</p>
+        <nav aria-label="快速連結"><a href="#/index">全部條目</a><a href="${href("申請期程")}">申請期程</a><a href="${href("應備文件")}">應備文件</a><a href="${href("待確認事項")}">待確認事項</a><a href="#/log">操作紀錄</a><a href="${href("原住民族學生資源中心")}">聯絡原資中心</a></nav>
+      </div>
     </section>
     <div class="home-grid"><div class="col">${left}</div><div class="col">${right}</div></div>`;
-  document.title = "原民會大專獎助學金 LLM Wiki｜政大";
+  document.title = "【原寶】原住民族學生資訊百科";
 }
 
+// ---------- 條目、原始碼 ----------
 function showPage(t){
   const p = PAGES[t];
   let meta = "";
-  if (p.sources && p.sources.length) meta += `<p>依據來源：${p.sources.map(link).join("、")}</p>`;
+  if (p.sources && p.sources.length) meta += `<p>依據來源：${p.sources.map(x => link(x)).join("、")}</p>`;
   const bl = [...(backlinks[t]||[])].filter(x => x !== t && x !== "index" && x !== "log");
-  if (bl.length) meta += `<p>連到這裡的條目：${bl.map(link).join("、")}</p>`;
+  if (bl.length) meta += `<p>連到這裡的條目：${bl.map(x => link(x)).join("、")}</p>`;
   if (p.updated) meta += `<p>最後更新：${esc(p.updated)}</p>`;
-  art().innerHTML = (TYPES[p.type] ? `<p class="crumb">${TYPES[p.type]}</p>` : "") + render(p.body) + (meta ? `<div class="meta">${meta}</div>` : "");
-  document.title = `${label(t)}｜原民會獎助學金 LLM Wiki`;
+  art().innerHTML = tabs(TYPES[p.type] || "條目", t, "read") + render(p.body) + (meta ? `<div class="meta">${meta}</div>` : "");
+  document.title = `${label(t)} - ${SITE}`;
+}
+function showSource(t){
+  const p = PAGES[t];
+  art().innerHTML = tabs(TYPES[p.type] || "條目", t, "source")
+    + `<h1>${esc(label(t))} 的原始碼</h1><p class="lead">這是 LLM 依 AGENTS.md 規則撰寫的 Markdown 原檔：<code>wiki/${esc(p.path || "")}</code>。開頭 --- 之間是條目資料，[[ ]] 是條目之間的連結。</p><pre><code>${esc(p.raw || "")}</code></pre>`;
+  document.title = `${label(t)} 的原始碼 - ${SITE}`;
 }
 
+// ---------- 提問 ----------
 function relatedHtml(hits, withSnippet){
   if (!hits.length) return "";
   return `<section class="related"><h2>相關條目</h2><ul>${hits.slice(0,5).map(x => `<li>${link(x.t)}${withSnippet ? `<p>${snippet(x)}</p>` : ""}</li>`).join("")}</ul></section>`;
@@ -354,21 +395,19 @@ function relatedHtml(hits, withSnippet){
 function answerBox(kind, labelText, text, extra){
   return `<section class="answer ${kind}" id="ai" aria-live="polite"><p class="label">${labelText}</p><p class="text">${text}</p>${extra||""}</section>`;
 }
-
 function showSearch(q){
   const {hits} = search(q);
   const seq = ++askSeq;
-  let h = `<p class="crumb">提問</p><h1 class="q-title">${esc(q)}</h1>`;
+  let h = tabs("提問", null) + `<h1 class="q-title">${esc(q)}</h1>`;
   if (ASK_API){
     h += `<section class="answer" id="ai" aria-live="polite"><p class="wait">正在讀 wiki、整理回答…</p></section><div id="rel">${relatedHtml(hits, false)}</div>`;
   } else {
-    h += hits.length ? relatedHtml(hits, true) : answerBox("nodata", "目前沒有資料", `這個 wiki 還沒有這方面的內容。可以換個說法再問一次，或直接聯絡${CONTACT}。`, START);
+    h += hits.length ? relatedHtml(hits, true) : answerBox("nodata", "目前沒有資料", `原寶還沒有這方面的內容。可以換個說法再問一次，或直接聯絡${CONTACT}。`, START);
   }
   art().innerHTML = h;
-  document.title = `${q}｜原民會獎助學金 LLM Wiki`;
+  document.title = `${q} - ${SITE}`;
   if (ASK_API) askAI(q, seq, hits);
 }
-
 async function askAI(q, seq, hits){
   const box = document.getElementById("ai"), rel = document.getElementById("rel");
   const current = () => seq === askSeq && document.body.contains(box);
@@ -379,7 +418,7 @@ async function askAI(q, seq, hits){
     if (d.error === "question_too_long") throw new Error("問題太長了，請精簡到 200 字以內。");
     if (!r.ok || d.error) throw new Error("");
     const status = d.status || (d.found ? "answered" : "no_data");
-    const note = `<p class="note">由 AI 根據本 wiki 整理，可能有誤，請以原資中心與原民會正式公告為準。</p>`;
+    const note = `<p class="note">由 AI 根據原寶的條目整理，可能有誤，請以原資中心與原民會正式公告為準。</p>`;
     if (status === "off_topic"){
       box.outerHTML = answerBox("offtopic", "不在服務範圍", esc(d.answer || ""));
       rel.innerHTML = "";
@@ -388,7 +427,7 @@ async function askAI(q, seq, hits){
     const srcs = (d.sources || []).filter(t => PAGES[t]);
     const text = esc(d.answer || "").replace(/\n/g,"<br>");
     if (status === "answered"){
-      box.outerHTML = answerBox("", "回答", text, (srcs.length ? `<p class="src">依據：${srcs.map(link).join("、")}</p>` : "") + note);
+      box.outerHTML = answerBox("", "回答", text, (srcs.length ? `<p class="src">依據：${srcs.map(x => link(x)).join("、")}</p>` : "") + note);
       if (srcs.length) rel.innerHTML = relatedHtml(hits.filter(h => !srcs.includes(h.t)), false);
     } else {
       box.outerHTML = answerBox("nodata", "目前沒有資料", text);
@@ -403,29 +442,28 @@ async function askAI(q, seq, hits){
   }
 }
 
+// ---------- 路由 ----------
 function show(){
   document.body.classList.remove("home");
-  const sm = location.hash.match(/^#search=(.*)$/);
-  if (sm){
-    const q = decodeURIComponent(sm[1]);
-    document.getElementById("topq").value = q;
-    showSearch(q);
-  } else {
-    document.getElementById("topq").value = "";
-    const t = decodeURIComponent(location.hash.replace(/^#\/?/,""));
+  const h = location.hash;
+  const sm = h.match(/^#search=(.*)$/), src = h.match(/^#source=(.*)$/);
+  document.getElementById("topq").value = sm ? decodeURIComponent(sm[1]) : "";
+  if (sm) showSearch(decodeURIComponent(sm[1]));
+  else if (src && PAGES[decodeURIComponent(src[1])]) showSource(decodeURIComponent(src[1]));
+  else {
+    const t = decodeURIComponent(h.replace(/^#\/?/,""));
     if (!t || t === HOME || !PAGES[t]) showHome(); else showPage(t);
   }
   window.scrollTo(0,0);
 }
-
 document.addEventListener("submit", e => {
-  const id = e.target.id; if (id !== "topform" && id !== "homeform") return;
+  if (e.target.id !== "topform") return;
   e.preventDefault();
-  const v = document.getElementById(id === "topform" ? "topq" : "homeq").value.trim();
+  const v = document.getElementById("topq").value.trim();
   if (v) go(v);
 });
 document.addEventListener("click", e => {
-  const b = e.target.closest(".examples button"); if (b) go(b.dataset.q);
+  const b = e.target.closest(".try button"); if (b) go(b.dataset.q);
 });
 
 // 外觀：文字大小、寬度、顏色，選擇會記在瀏覽器
@@ -457,7 +495,7 @@ document.addEventListener("click", e => {
 
 window.addEventListener("hashchange", show);
 load().then(show).catch(() => {
-  art().innerHTML = `<h1>讀不到 wiki 內容</h1><p>這個網頁要透過網站伺服器開啟，直接雙擊 index.html 會讀不到 Markdown 檔。部署到網路上，或在資料夾裡執行 <code>python -m http.server</code> 再開 http://localhost:8000 即可。</p>`;
+  art().innerHTML = `<h1>讀不到原寶的條目</h1><p>這個網頁要透過網站伺服器開啟，直接雙擊 index.html 會讀不到 Markdown 檔。部署到網路上，或在資料夾裡執行 <code>python -m http.server</code> 再開 http://localhost:8000 即可。</p>`;
 });
 </script>
 </body>
