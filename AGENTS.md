@@ -13,10 +13,12 @@
   - `log.md`：只增不改的操作紀錄。
 
 ## 條目格式
+**檔名一律用英文小寫加連字號**（例如 `concepts/award-types.md`），因為部署平台讀不到中文檔名。條目的中文名稱寫在 frontmatter 的 `title`，`[[連結]]` 用的是 title，不是檔名。
+
 每頁開頭放 frontmatter：
 ```
 ---
-title: 條目名稱（與檔名相同）
+title: 條目中文名稱（[[連結]] 用這個名字）
 type: source | concept | entity | query | meta
 sources: [來源頁名稱, ...]
 updated: YYYY-MM-DD
